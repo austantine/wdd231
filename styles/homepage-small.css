@@ -4,7 +4,7 @@
    :root {
     --color-primary: #460350;       /* dark purple */
     --color-back: #eeedea;         /* light background */
-    --color-dark-back: #090909;     /*dark background */
+    --color-dark-back: #000000;     /*dark background */
     --color-light: #ffffff;         /* pure white */
     --color-green:#079a89;         /* green for hover*/
     --color-light-green:#e0f2f1; /*light green for hover*/
