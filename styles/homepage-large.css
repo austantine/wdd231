@@ -1,0 +1,207 @@
+/* homepage-large.css */
+
+@media (min-width: 768px) {
+/* =======================================
+Header stacked layout for large screens 
+========================================*/
+   header {
+    flex-direction: column; /* stack logo and nav vertically */
+    width:100%;
+    margin:0;
+   }
+   
+    .logo {
+        display: inline-block;
+      align-items: start;
+      background-color: var(--color-light);
+      color: var(--color-dark-back);
+     margin: 0;
+            
+    }
+  
+    #menu-toggle {
+        display: none; /* hide hamburger on large screens */
+      }
+    
+      /* Navigation row */
+      nav {
+        display: block;
+        width: 100%;
+        background-color: var(--color-primary);
+        padding-top: 0.5rem;
+        padding-left: 1rem;
+      }
+  
+    nav ul {
+      display: flex;
+      justify-content: start;
+      gap: 20px;
+    }
+  
+    nav ul li a {
+      padding: 8px 12px;
+      text-decoration: none;
+      color: var(--color-light);
+      transition: color 0.3s ease, background-color 0.3s ease;
+      padding-left: 0; /* Reset margin for large screens */
+    }
+  
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #b2dfdb;
+      color: #004d40;
+      border-radius: 4px;
+      outline: none;
+    }
+  
+    /* Profile Section side-by-side */
+    .profile {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 30px;
+      margin: 5px 0;
+    }
+  
+    .profile div:first-child {
+      flex: 2; /* About-me info takes more space */
+    }
+    .profile div:last-child {
+      flex: 1; /* student photo takes less space */
+      text-align: center;
+    }
+  
+    .profile .student {
+      text-align: center;
+      background-color: var(--color-back);
+      border-top-right-radius: 15px;
+      
+    }
+    .profile .about-me {
+        text-align: center;
+        background-color: var(--color-back);
+        border-top-left-radius: 15px;
+      }
+  
+    .profile img {
+      padding-top: 0.5rem;
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      border-radius: 8px;
+      text-shadow: var(--color-back) 2px 2px 4px;
+    }
+    .profile .about-me h2 {
+      margin-top: 0;
+      font-size: 1rem;
+      background-color: var(--color-primary);
+      color:var(--color-light);
+      padding:0.5rem;
+      border-top-left-radius: 15px;
+    }
+    .profile .student h2 {
+        margin-top: 0;
+        font-size: 1rem;
+        background-color: var(--color-primary);
+        color:var(--color-light);
+        padding:0.5rem;
+        border-top-right-radius: 15px;
+        
+      }
+    .profile p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--color-dark);
+      text-align: left;
+      padding: 0.5rem;
+    }
+/*=======================================
+    Course Filter Buttons
+=======================================*/
+    .filters  {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for large screens */
+        gap: 10px;
+        margin: 20px 0;
+    }
+    #course-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for large screens */
+        gap: 10px;
+        margin: 20px 0;
+    }
+    .filters button {
+        background-color: var(--color-primary);
+        color: var(--color-light);
+        border: none;
+        padding: 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        transition:background-color 0.3s ease, transform 0.2s ease;
+    }
+
+.filters button:hover,
+.filters button:focus {
+  background-color: #6a1b9a; /* lighter purple shade */
+  transform: scale(1.05);
+  outline: none;
+}
+
+.filters button:focus-visible {
+  outline: 2px solid #004d40;
+  outline-offset: 3px;
+}
+
+/* ======================
+    Buttons 
+   ======================*/
+button {
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+  
+    button:hover,
+    button:focus {
+      background-color: #00695c;
+      transform: scale(1.05);
+      outline: none;
+    }
+  /* ======================
+    Footer 
+   ======================*/
+    footer {
+          flex-direction: column; /* keep three rows stacked */
+        }
+      
+        /* Row 1: Social links row */
+        footer .social {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          padding: 1rem;
+          background-color: var(--color-light);
+        }
+      
+        /* Row 2: Footer info centralized */
+    footer .footer-info {
+          display: flex;
+          justify-content: center; /* centralized */
+          align-items: center;
+          background-color: var(--color-primary);
+          color: var(--color-light);
+          padding: 0.5rem 0.1rem;
+        }
+      
+        /* Row 3: Footer date centralized */
+    footer .footer-date {
+          display: flex;
+          justify-content: center; /* centralized */
+          align-items: center;
+          background-color: var(--color-primary);
+          color: var(--color-light);
+          margin-top: 0;
+          padding-top: 0;
+          padding-bottom: 0.8rem;
+        }
+}
+      

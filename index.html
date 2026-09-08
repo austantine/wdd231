@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Austine Portfolio</title>
+    <meta name="description" content="Student portfolio showcasing projects and web development courses.">
+    <meta name="author" content="Augustine Osazee Airhiavbere">
+    <link rel="stylesheet" href="styles/homepage-small.css">
+    <link rel="stylesheet" href="styles/homepage-large.css">
+    <script src="scripts/homepage.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.svg" alt="Site Logo">
+            <span>Austine Portfolio</span>
+        </div>
+        <button id="menu-toggle" aria-label="Menu">&#9776;</button>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="chamber.html">Chamber Project</a></li>
+                <li><a href="final.html">Final Project</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Home</h1>
+
+        <section class="profile">
+            <div class="about-me">
+                <h2>About Me</h2>
+                <p>Lorem ipsum placeholder text about Austine... Lorem ipsum dolor,
+                    sit amet consectetur adipisicing elit. Animi voluptas autem similique
+                    quis, quas debitis ea iure eaque eius a nulla quisquam sequi possimus
+                    suscipit quod earum necessitatibus placeat in!
+                    Lorem ipsum placeholder text about Austine... Lorem ipsum dolor,
+                    sit amet consectetur adipisicing elit. Animi voluptas autem similique
+                    quis, quas debitis ea iure eaque eius a nulla quisquam sequi possimus
+                    suscipit quod earum necessitatibus placeat in!
+                    Lorem ipsum placeholder text about Austine... Lorem ipsum dolor,
+                    sit amet consectetur adipisicing elit. Animi voluptas autem similique
+                    quis, quas debitis ea iure eaque eius a nulla quisquam sequi possimus
+                    suscipit quod earum necessitatibus placeat in!
+                    Lorem ipsum placeholder text about Austine... Lorem ipsum dolor,
+                    sit amet consectetur adipisicing elit. Animi voluptas autem similique
+                    quis, quas debitis ea iure eaque eius a nulla quisquam sequi possimus
+                    suscipit quod earum necessitatibus placeat in!</p>
+            </div><!--End of about me-->
+            <div class="student">
+                <h2>Student Photo</h2>
+                <img src="images/student.webp" alt="Photo of Austine">
+            </div><!--Student Photo-->
+                       
+        </section>
+
+        <section class="courses"><!--Beginning of Web Certificate Courses-->
+            <h2>Web Certificate Courses</h2>
+            <div class="filters">
+                <button id="all">All</button>
+                <button id="cse">CSE</button>
+                <button id="wdd">WDD</button>
+            </div>
+            <div id="course-list"></div>
+            <p>Total credits for the courses listed above: <span id="total-credits"></span></p>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Row 1: Social links -->
+        <div class="social">
+          <a href="https://github.com/austantine" aria-label="GitHub">
+            <img src="images/github.png" alt="GitHub">
+          </a>
+          <a href="https://linkedin.com/in/austantine" aria-label="LinkedIn">
+            <img src="images/linkedin.png" alt="LinkedIn">
+          </a>
+        </div>
+      
+        <!-- Row 2: Footer info -->
+        <div class="footer-info">
+          <p>&copy; <span id="currentyear"></span> 🌴 Augustine Osazee Airhiavbere | Nigeria 🌴</p>
+        </div>
+      
+        <!-- Row 3: Footer date -->
+        <div class="footer-date">
+          <p id="lastModified"></p>
+        </div>
+      </footer>
+      
+</body>
+
+</html>

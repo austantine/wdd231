@@ -1,0 +1,236 @@
+/* ===========================
+   Global Variables
+   =========================== */
+   :root {
+    --color-primary: #460350;       /* dark purple */
+    --color-back: #b7b6b4;         /* light background */
+    --color-dark-back: #383938;     /*dark background */
+    --color-light: #ffffff;         /* pure white */
+    --color-green:#079a89;         /* green for hover*/
+    --color-light-green:#e0f2f1; /*light green for hover*/
+    --color-overlay-dark: rgba(0, 0, 0, 0.6); /* semi-transparent black */
+  }
+  
+  /* Reset */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    padding: 10px;
+    background-color: var(--color-light);
+    color: var(--color-dark-back);
+  }
+  
+  /* Header */
+  header {
+    display: flex;
+    flex-direction: column; /* stack logo and nav vertically */
+    align-items: flex-start;
+    width: 100%;
+    padding: 0.5rem;
+    gap: 5px;
+    
+  }
+  
+  .logo {
+    display: flex;
+    align-items: start;
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    width: 100%;
+    padding: 0rem;
+    margin-left: 0;
+    
+  }
+  
+  .logo img {
+    width: 40px;
+    margin-right: 10px;
+  }
+  
+  /* Hamburger toggle */
+#menu-toggle {
+    display: inline;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-dark-back);
+    position: absolute;        /* float above other elements */
+    top: 1rem;                 /* adjust vertical position */
+    right: 1rem;               /* align to the right */
+    z-index: 1000;             /* ensure it stays above nav */
+  }
+  
+  
+  /* Navigation */
+  nav {
+    display: none;
+    width: 100%;
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    padding: 0.5rem 0;
+  }
+  
+  nav.open {
+    display: block;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin: 10px 0;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: var(--color-light);
+    padding: 8px 12px;
+    display: block;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  nav ul li a:hover,
+  nav ul li a:focus {
+    color: var(--color-green);
+    background-color: var(--color-light-green);
+    border-radius: 4px;
+    outline: none;
+  }
+  h1{
+    font-size: 2rem;
+    text-align: start;
+    padding-left: 1rem;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  /* Profile Section */
+  .profile {
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .profile div {
+    margin-bottom: 20px;
+  }
+  
+  .profile img {
+    padding-top: 0.5rem;
+    max-width: 80%;
+    height: auto;
+    border-radius: 8px;
+    text-shadow: var(--color-back) 2px 2px 4px;
+  }
+  .profile .about-me h2 {
+    margin-top: 0;
+    font-size: 1rem;
+    background-color: var(--color-primary);
+    color:var(--color-light);
+    padding:0.5rem;
+    border-top-left-radius: 15px;
+  }
+  .profile .student h2 {
+      margin-top: 0;
+      font-size: 1rem;
+      background-color: var(--color-primary);
+      color:var(--color-light);
+      padding:0.5rem;
+      border-top-right-radius: 15px;
+  }
+  
+  /* Buttons */
+  button {
+    background-color: #00796b;
+    color: var(--color-light);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover,
+  button:focus {
+    background-color: #004d40;
+    transform: scale(1.05);
+    outline: none;
+  }
+  
+  button:focus-visible,
+  nav ul li a:focus-visible {
+    outline: 2px solid #004d40;
+    outline-offset: 3px;
+  }
+  
+  /* Courses */
+  .course {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .courses h2{
+    margin-bottom: 5px;
+    font-size: 1rem;
+    text-align: center;
+    background-color: var(--color-primary);
+    color:var(--color-light);
+    padding:0.5rem;
+    border-top-left-radius: 15px;
+  }
+
+  
+  .course.completed {
+    background-color: #d4edda;
+    border-color: #28a745;
+  }
+  .courses p{
+    text-align: center;
+    padding-top: 0;
+  }
+ /* Footer three-row layout */
+footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  /* Row 1: Social links row */
+  footer .social {
+    background-color: var(--color-light); /* white background */
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  footer .social a img {
+    width: 30px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  footer .social a img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Row 2 & 3: Info + Date centralized */
+  footer .footer-info,
+  footer .footer-date {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    text-align: center;
+    padding: 0.5rem;
+  }
+  
+  footer .footer-info p,
+  footer .footer-date p {
+    margin: 5px 0;
+  }
+  
+  
+  
+  
