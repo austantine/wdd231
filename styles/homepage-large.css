@@ -73,13 +73,17 @@ Header stacked layout for large screens
   
     .profile .student {
       text-align: center;
-      background-color: var(--color-back);
+      background-color: var(--color-light);
+      color: var(--color-dark-back);
+      border: 1px solid var(--color-primary);
       border-top-right-radius: 15px;
       
     }
     .profile .about-me {
         text-align: center;
-        background-color: var(--color-back);
+        background-color: var(--color-light);
+      color: var(--color-dark-back);
+      border: 1px solid var(--color-primary);
         border-top-left-radius: 15px;
       }
   
@@ -89,7 +93,8 @@ Header stacked layout for large screens
       max-width: 200px;
       height: auto;
       border-radius: 8px;
-      text-shadow: var(--color-back) 2px 2px 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+     
     }
     .profile .about-me h2 {
       margin-top: 0;
@@ -99,6 +104,7 @@ Header stacked layout for large screens
       color:var(--color-light);
       padding:0.5rem;
       border-top-left-radius: 15px;
+      text-shadow: var(--color-back) 2px 2px 4px;
     }
     .profile .student h2 {
         margin-top: 0;
@@ -106,6 +112,7 @@ Header stacked layout for large screens
         background-color: var(--color-primary);
         color:var(--color-light);
         padding:0.5rem;
+        text-shadow: var(--color-back) 2px 2px 4px;
         border-top-right-radius: 15px;
         
       }
@@ -113,8 +120,7 @@ Header stacked layout for large screens
       font-size: 1rem;
       line-height: 1.5;
       text-align: justify;
-      color: var(--color-light);
-      text-align: left;
+      color: var(--color-dark-back);
       padding: 0.5rem;
     }
 /*=======================================
