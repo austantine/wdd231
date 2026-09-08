@@ -121,7 +121,7 @@ Header stacked layout for large screens
       line-height: 1.5;
       text-align: justify;
       color: var(--color-dark-back);
-      padding: 0.5rem;
+      padding: 1.5rem;
     }
 /*=======================================
     Course Filter Buttons
