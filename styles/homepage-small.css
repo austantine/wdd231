@@ -3,7 +3,7 @@
    =========================== */
    :root {
     --color-primary: #460350;       /* dark purple */
-    --color-back: #eeedea;         /* light background */
+    --color-back: #333333;         /* light background */
     --color-dark-back: #000000;     /*dark background */
     --color-light: #ffffff;         /* pure white */
     --color-green:#079a89;         /* green for hover*/

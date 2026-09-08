@@ -113,7 +113,7 @@ Header stacked layout for large screens
       font-size: 1rem;
       line-height: 1.5;
       text-align: justify;
-      color: var(--color-dark);
+      color: var(--color-light);
       text-align: left;
       padding: 0.5rem;
     }
