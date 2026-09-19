@@ -2,21 +2,22 @@
    Global Variables
    ============================== */
 :root {
-    --primary-color: #004466;
-    /* Header & footer background */
-    --secondary-color: #f9f9f9;
-    /* Card & body background */
-    --text-color: #000000;
-    /* Default text color */
-    --link-color: #ffffff;
-    /* Navigation & footer links */
-    --border-color: #cccccc;
-    /* Card borders */
-    --accent-color: #c0392b;
-    /* darker red */
-    /* Accent for buttons */
-    --color-overlay-dark: rgba(0, 0, 0, 0.1);
+  --primary-color: #004466;
+  --secondary-color: #f9f9f9;
+  --text-color: #000000;
+  --link-color: #ffffff;
+  --border-color: #cccccc;
+  --accent-color: #c0392b;
+  --color-overlay-dark: rgba(0, 0, 0, 0.1);
+
+  /* Dark mode equivalents */
+  --dark-bg: #111111;
+  --dark-card-bg: #333333;
+  --dark-text: #eeeeee;
+  --dark-link: #4da6ff;
+  --dark-border: #555555;
 }
+
 
 /* ==============================
    Reset / Normalize Basics
@@ -318,39 +319,45 @@ main {
    ============================== */
 /* Dark Mode Overrides */
 body.dark-mode {
-    background-color: #111;   /* dark background */
-    color: #eee;              /* light text */
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
   }
   
   body.dark-mode header,
   body.dark-mode footer {
-    background-color: #222;   /* darker header/footer */
-    color: #fff;
+    background-color: var(--primary-color); /* keep brand color */
+    color: var(--link-color);
   }
   
-  body.dark-mode .card {
-    background-color: #333;
-    color: #fff;
-    border-color: #555;
+  body.dark-mode .card,
+  body.dark-mode .spotlight-card {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+    border-color: var(--dark-border);
   }
   
   body.dark-mode a {
-    color: #00adb5; /* teal links in dark mode */
-  }
-  /* Dark Mode fix for members section */
-body.dark-mode #members {
-    background-color: #111;   /* match body background */
-    color: #eee;              /* readable light text */
+    color: var(--dark-link);
   }
   
-  body.dark-mode #members .card {
-    background-color: #333;   /* dark card background */
-    color: #fff;              /* white text inside cards */
-    border-color: #555;
+  body.dark-mode .spotlights,
+  body.dark-mode #members {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  /* Dark Mode fix for spotlights on index.html */
+body.dark-mode .spotlights {
+    background-color: var(--dark-bg);   /* dark background for section */
+    color: var(--dark-text);            /* readable text */
   }
   
-  body.dark-mode #members a {
-    color: #4da6ff;           /* readable link color */
+  body.dark-mode .spotlight-card {
+    background-color: var(--dark-card-bg); /* dark card background */
+    color: var(--dark-text);               /* light text inside cards */
+    border-color: var(--dark-border);
   }
   
+  body.dark-mode .spotlight-card a {
+    color: var(--dark-link);               /* readable link color */
+  }
   
