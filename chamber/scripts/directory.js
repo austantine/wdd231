@@ -132,7 +132,7 @@ if (weatherContainer) {
                     const card = document.createElement("div");
                     card.classList.add("spotlight-card", "community-card");
                     card.innerHTML = `
-                        <img src="images/${member.image}" alt="${member.name} logo" loading="lazy">
+                        <img src="${member.image}" alt="${member.name} logo" loading="lazy">
                         <h3>${member.name}</h3>
                         <p>📞 ${member.phone}</p>
                         <p>📍 ${member.address}</p>
@@ -177,7 +177,7 @@ if (weatherContainer) {
             const card = document.createElement("div");
             card.classList.add("card");
             card.innerHTML = `
-                <img src="images/${member.image}" alt="${member.name} logo" loading="lazy">
+                <img src="${member.image}" alt="${member.name} logo" loading="lazy">
                 <h3>${member.name}</h3>
                 <p>📍 ${member.address}</p>
                 <p>📞 ${member.phone}</p>
