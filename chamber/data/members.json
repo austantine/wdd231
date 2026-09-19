@@ -73,7 +73,7 @@
     },
     {
       "name": "Edo Tech Hub",
-      "image": "edotech.png",
+      "image": "edotech.webp",
       "phone": "+234-800-123-4567",
       "address": "123 Innovation Road, Benin City",
       "website": "https://edotechhub.com",
@@ -82,7 +82,7 @@
     },
     {
       "name": "Benin Agro Ltd",
-      "image": "agro.png",
+      "image": "agro.webp",
       "phone": "+234-800-987-6543",
       "address": "45 Green Farms Avenue, Benin City",
       "website": "https://beninagro.com",
@@ -91,7 +91,7 @@
     },
     {
       "name": "Startup Hub",
-      "image": "startup.png",
+      "image": "startup.webp",
       "phone": "+234-800-333-2222",
       "address": "12 Business Lane, Benin City",
       "website": "https://startuphub.com",
@@ -100,7 +100,7 @@
     },
     {
       "name": "Benin Fashion House",
-      "image": "fashion.png",
+      "image": "fashion.webp",
       "phone": "+234-800-444-8888",
       "address": "56 Style Street, Benin City",
       "website": "https://beninfashion.com",
