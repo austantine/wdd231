@@ -360,4 +360,9 @@ body.dark-mode .spotlights {
   body.dark-mode .spotlight-card a {
     color: var(--dark-link);               /* readable link color */
   }
+
+  /* Dark mode override */
+  body.dark-mode .card h3 {
+    color: var(--dark-text); /* this is #eeeeee from your variables */
+  }
   
