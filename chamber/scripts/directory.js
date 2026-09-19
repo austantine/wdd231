@@ -2,6 +2,11 @@ console.log("✅ directory.js is loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
     // ==============================
+    // Environment Detection
+    // ==============================
+    const isDev = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+
+    // ==============================
     // Mobile Navigation Toggle
     // ==============================
     const menuToggle = document.getElementById('menu-toggle');
@@ -9,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'block' ? 'none' : 'block';
+            navLinks.classList.toggle('open');
         });
     }
 
@@ -41,10 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // Initial load
         applyTheme(savedTheme === "dark" || (!savedTheme && prefersDark));
 
-        // Toggle on click
         toggleBtn.addEventListener("click", () => {
             const isDark = !document.body.classList.contains("dark-mode");
             applyTheme(isDark);
@@ -52,51 +55,56 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==============================
-    // Weather API
-    // ==============================
-    const weatherContainer = document.getElementById("weather-info");
-    if (weatherContainer) {
-        const apiKey = "REPLACE_WITH_YOUR_OPENWEATHERMAP_API_KEY"; // must be valid
-        const city = "Benin City,NG";
-        const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+// ==============================
+// Weather API
+// ==============================
+const weatherContainer = document.getElementById("weather-info");
+if (weatherContainer) {
+    // Use your real API key here
+    const apiKey = "05411e64f3dddbff9f2c1db713a3c273";
+    // Use city ID for reliability (Benin City, Nigeria = 2347283)
+    const cityId = 2347283;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&appid=${apiKey}&units=metric`;
 
-        async function getWeather() {
-            try {
-                console.log("Fetching weather from:", url);
-                const response = await fetch(url);
-                if (!response.ok) throw new Error(`Weather API error: ${response.status}`);
-                const data = await response.json();
-                console.log("Weather data loaded:", data);
-
-                if (!data.list || data.list.length === 0) {
-                    weatherContainer.innerHTML = "<p>No weather data available.</p>";
-                    return;
-                }
-
-                const current = data.list[0];
-                let html = `
-                    <p>🌡️ Current Temp: ${current.main.temp}°C</p>
-                    <p>☁️ Condition: ${current.weather[0].description}</p>
-                    <h3>3-Day Forecast</h3><ul>
-                `;
-
-                for (let i = 1; i <= 3; i++) {
-                    const forecast = data.list[i * 8];
-                    if (forecast) {
-                        html += `<li>${new Date(forecast.dt_txt).toDateString()}: ${forecast.main.temp}°C</li>`;
-                    }
-                }
-
-                html += "</ul>";
-                weatherContainer.innerHTML = html;
-            } catch (error) {
-                console.error("Error fetching weather:", error);
-                weatherContainer.innerHTML = "<p>Error loading weather data.</p>";
+    async function getWeather() {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                weatherContainer.innerHTML = `<p>Weather API error: ${response.status} ${response.statusText}</p>`;
+                throw new Error(`Weather API error: ${response.status} ${response.statusText}`);
             }
+            const data = await response.json();
+
+            if (!data.list || data.list.length === 0) {
+                weatherContainer.innerHTML = "<p>No weather data available.</p>";
+                return;
+            }
+
+            const current = data.list[0];
+            let html = `
+                <p>🌡️ Current Temp: ${current.main.temp}°C</p>
+                <p>☁️ Condition: ${current.weather[0].description}</p>
+                <h3>3-Day Forecast</h3><ul>
+            `;
+
+            for (let i = 1; i <= 3; i++) {
+                const index = i * 8; // 8 intervals ≈ 24 hours
+                if (index < data.list.length) {
+                    const forecast = data.list[index];
+                    html += `<li>${new Date(forecast.dt_txt).toDateString()}: ${forecast.main.temp}°C</li>`;
+                }
+            }
+
+            html += "</ul>";
+            weatherContainer.innerHTML = html;
+        } catch (error) {
+            console.error("Error fetching weather:", error);
+            weatherContainer.innerHTML = `<p>Error loading weather data: ${error.message}</p>`;
         }
-        getWeather();
     }
+    getWeather();
+}
+
 
     // ==============================
     // Company Spotlights
@@ -105,11 +113,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (spotlightContainer) {
         async function loadSpotlights() {
             try {
-                console.log("Fetching members from: data/members.json");
+                if (isDev) console.log("Fetching members from: data/members.json");
                 const response = await fetch("data/members.json");
                 if (!response.ok) throw new Error(`Members JSON error: ${response.status}`);
-                const members = await response.json();
-                console.log("Members data loaded:", members);
+                const data = await response.json();
+                const members = data.members || data;
+                if (isDev) console.log("Members data loaded:", members);
 
                 const goldSilver = members.filter(m => m.membership === "Gold" || m.membership === "Silver");
                 if (goldSilver.length === 0) {
@@ -142,59 +151,60 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==============================
-// Chamber Directory Members
-// ==============================
-const membersContainer = document.getElementById("members");
-const gridBtn = document.getElementById("grid");
-const listBtn = document.getElementById("list");
+    // Chamber Directory Members
+    // ==============================
+    const membersContainer = document.getElementById("members");
+    const gridBtn = document.getElementById("grid");
+    const listBtn = document.getElementById("list");
 
-async function loadMembers() {
-    try {
-        const response = await fetch("data/members.json"); // this is the line you’re missing
-        if (!response.ok) throw new Error(`Members JSON error: ${response.status}`);
-        const members = await response.json();
-        displayMembers(members);
-    } catch (error) {
-        console.error("Error loading members:", error);
-        membersContainer.innerHTML = "<p>Error loading member directory.</p>";
+    async function loadMembers() {
+        try {
+            if (isDev) console.log("Fetching directory members from: data/members.json");
+            const response = await fetch("data/members.json");
+            if (!response.ok) throw new Error(`Members JSON error: ${response.status}`);
+            const data = await response.json();
+            const members = data.members || data;
+            if (isDev) console.log("Directory members loaded:", members);
+            displayMembers(members);
+        } catch (error) {
+            console.error("Error loading members:", error);
+            membersContainer.innerHTML = "<p>Error loading member directory.</p>";
+        }
     }
-}
 
-function displayMembers(members) {
-    membersContainer.innerHTML = "";
-    members.forEach(member => {
-        const card = document.createElement("div");
-        card.classList.add("card");
-        card.innerHTML = `
-            <img src="images/${member.image}" alt="${member.name} logo" loading="lazy">
-            <h3>${member.name}</h3>
-            <p>📍 ${member.address}</p>
-            <p>📞 ${member.phone}</p>
-            <p><a href="${member.website}" target="_blank">Visit Website</a></p>
-            <p>Membership: ${member.membership}</p>
-            <p>${member.info}</p>
-        `;
-        membersContainer.appendChild(card);
-    });
-}
+    function displayMembers(members) {
+        membersContainer.innerHTML = "";
+        members.forEach(member => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.innerHTML = `
+                <img src="images/${member.image}" alt="${member.name} logo" loading="lazy">
+                <h3>${member.name}</h3>
+                <p>📍 ${member.address}</p>
+                <p>📞 ${member.phone}</p>
+                <p><a href="${member.website}" target="_blank">Visit Website</a></p>
+                <p>Membership: ${member.membership}</p>
+                <p>${member.info}</p>
+            `;
+            membersContainer.appendChild(card);
+        });
+    }
 
-// Toggle buttons
-if (gridBtn && listBtn) {
-    gridBtn.addEventListener("click", () => {
-        membersContainer.classList.add("grid");
-        membersContainer.classList.remove("list");
-        membersContainer.querySelectorAll(".card img").forEach(img => img.style.display = "block");
-    });
+    if (gridBtn && listBtn) {
+        gridBtn.addEventListener("click", () => {
+            membersContainer.classList.add("grid");
+            membersContainer.classList.remove("list");
+            membersContainer.querySelectorAll(".card img").forEach(img => img.style.display = "block");
+        });
 
-    listBtn.addEventListener("click", () => {
-        membersContainer.classList.add("list");
-        membersContainer.classList.remove("grid");
-        membersContainer.querySelectorAll(".card img").forEach(img => img.style.display = "none");
-    });
-}
+        listBtn.addEventListener("click", () => {
+            membersContainer.classList.add("list");
+            membersContainer.classList.remove("grid");
+            membersContainer.querySelectorAll(".card img").forEach(img => img.style.display = "none");
+        });
+    }
 
-// Load members on page start
-if (membersContainer) {
-    loadMembers();
-} 
+    if (membersContainer) {
+        loadMembers();
+    }
 });

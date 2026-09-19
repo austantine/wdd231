@@ -337,4 +337,20 @@ body.dark-mode {
   body.dark-mode a {
     color: #00adb5; /* teal links in dark mode */
   }
+  /* Dark Mode fix for members section */
+body.dark-mode #members {
+    background-color: #111;   /* match body background */
+    color: #eee;              /* readable light text */
+  }
+  
+  body.dark-mode #members .card {
+    background-color: #333;   /* dark card background */
+    color: #fff;              /* white text inside cards */
+    border-color: #555;
+  }
+  
+  body.dark-mode #members a {
+    color: #4da6ff;           /* readable link color */
+  }
+  
   
