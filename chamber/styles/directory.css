@@ -1,0 +1,351 @@
+/* ==============================
+   Global Variables
+   ============================== */
+:root {
+    --primary-color: #004466;
+    /* Header & footer background */
+    --secondary-color: #f9f9f9;
+    /* Card & body background */
+    --text-color: #000000;
+    /* Default text color */
+    --link-color: #ffffff;
+    /* Navigation & footer links */
+    --border-color: #cccccc;
+    /* Card borders */
+    --accent-color: #c0392b;
+    /* darker red */
+    /* Accent for buttons */
+    --color-overlay-dark: rgba(0, 0, 0, 0.1);
+}
+
+/* ==============================
+   Reset / Normalize Basics
+   ============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ==============================
+   Header Section
+   ============================== */
+header {
+    background-color: var(--primary-color);
+    color: var(--link-color);
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--link-color);
+}
+
+.site-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--link-color);
+    margin: 0;
+    text-align: start;
+    line-height: 1.2;
+    letter-spacing: 1px;
+}
+
+/* ==============================
+   Home Page Navigation
+   ============================== */
+/* Hero Section */
+.hero {
+    position: relative;
+    text-align: center;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--link-color);
+}
+
+.cta-btn {
+    background-color: var(--accent-color);
+    color: var(--link-color);
+    padding: 0.7rem 1.2rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Events, Weather, Spotlights */
+.events,
+.weather,
+.spotlights {
+    padding: 2rem;
+    text-align: center;
+}
+
+.spotlights {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.spotlight-card {
+    border: 1px solid var(--border-color);
+    background: var(--secondary-color);
+    margin: 1rem;
+    padding: 1rem;
+    width: 250px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px var(--color-overlay-dark);
+}
+
+.spotlight-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Navigation container */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Toggle button (mobile only) */
+#menu-toggle {
+    background-color: transparent;
+    border: none;
+    color: var(--link-color);
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: none;
+}
+
+/* Navigation links */
+#nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+#nav-links li a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+#nav-links li a.active {
+    text-decoration: underline;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: block;
+    }
+
+    #nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        padding: 1rem;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+    }
+
+    #nav-links li {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* ==============================
+   Footer
+   ============================== */
+footer {
+    background-color: var(--primary-color);
+    color: var(--link-color);
+    text-align: center;
+    padding: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#year {
+    padding-top: 1.5rem;
+}
+
+#lastModified {
+    padding-bottom: 0.5rem;
+}
+
+/* Dark Mode Toggle Button */
+#dark-mode-toggle {
+    background-color: var(--accent-color);
+    color: var(--link-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#dark-mode-toggle:hover {
+    opacity: 0.85;
+}
+
+/* ==============================
+   Main Content
+   ============================== */
+main {
+    padding: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-buttons {
+    margin-bottom: 1rem;
+}
+
+.view-buttons button {
+    background-color: var(--accent-color);
+    border: none;
+    color: var(--link-color);
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-buttons button:hover {
+    opacity: 0.85;
+}
+
+/* ==============================
+   Member Cards
+   ============================== */
+#members.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+#members.list {
+    display: block;
+}
+
+#members.list .card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#members.list .card img {
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Default image styling for grid view */
+#members.grid .card img {
+    width: 90%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+.card {
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    background: var(--secondary-color);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px var(--color-overlay-dark);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.card a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* ==============================
+   Dark Mode Overrides
+   ============================== */
+
+body.dark-mode .community-card {
+    background: var(--color-light);
+    color: #000000;
+}
+
+body.dark-mode .community-card h2 {
+    color: var(--color-primary);
+}
+
+/* Dark Mode Button Styling */
+#dark-mode-toggle {
+    background-color: var(--accent-color);
+    color: var(--link-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#dark-mode-toggle.dark {
+    background-color: #00adb5;
+    /* teal highlight in dark mode */
+    color: #000000;
+    /* black text for contrast */
+}
+
+
+/* Dark Mode Button Styling */
+#dark-mode-toggle {
+    background-color: var(--accent-color);
+    color: var(--link-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#dark-mode-toggle.dark {
+    background-color: #00adb5;
+    /* Bright teal in dark mode */
+    color: #000;
+    /* Dark text for contrast */
+}

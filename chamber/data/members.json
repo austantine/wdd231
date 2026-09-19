@@ -1,0 +1,110 @@
+[
+    {
+        "name": "Delicious Eats",
+        "address": "123 Main Street",
+        "phone": "555-123-4567",
+        "website": "http://deliciouseats.com",
+        "image": "delicious-eats.jpg",
+        "membership": 2,
+        "info": "Serving local cuisine since 1995."
+    },
+    {
+        "name": "City Boutique",
+        "address": "456 Market Road",
+        "phone": "555-987-6543",
+        "website": "http://cityboutique.com",
+        "image": "city-boutique.jpg",
+        "membership": 3,
+        "info": "Trendy fashion and accessories."
+    },
+    {
+        "name": "Tech Solutions",
+        "address": "789 Innovation Drive",
+        "phone": "555-222-3333",
+        "website": "http://techsolutions.com",
+        "image": "tech-solutions.jpg",
+        "membership": 1,
+        "info": "IT services and consulting for small businesses."
+    },
+    {
+        "name": "Green Leaf Market",
+        "address": "321 Garden Avenue",
+        "phone": "555-444-5555",
+        "website": "http://greenleafmarket.com",
+        "image": "green-leaf.jpg",
+        "membership": 2,
+        "info": "Organic groceries and fresh produce."
+    },
+    {
+        "name": "Fitness Hub",
+        "address": "654 Wellness Street",
+        "phone": "555-666-7777",
+        "website": "http://fitnesshub.com",
+        "image": "fitness-hub.jpg",
+        "membership": 3,
+        "info": "State-of-the-art gym and wellness center."
+    },
+    {
+        "name": "Bright Minds Academy",
+        "address": "987 Knowledge Lane",
+        "phone": "555-888-9999",
+        "website": "http://brightmindsacademy.com",
+        "image": "bright-minds.jpg",
+        "membership": 1,
+        "info": "Private school offering quality education."
+    },
+    {
+        "name": "Sunset Travel Agency",
+        "address": "159 Adventure Blvd",
+        "phone": "555-000-1111",
+        "website": "http://sunsettravel.com",
+        "image": "sunset-travel.jpg",
+        "membership": 2,
+        "info": "Helping you plan unforgettable vacations."
+    },
+    {
+        "name": "Austantine Innovation Concept Ltd.",
+        "address": "1, Austantine Avenue, Benin City, Edo State, Nigeria",
+        "phone": "+234 7058505005",
+        "website": "http://aiconceptltd.com",
+        "image": "innovation-concept.jpg",
+        "membership": 2,
+        "info": "Making your world a better place with innovative solutions."
+    },
+    {
+        "name": "Edo Tech Hub",
+        "image": "edotech.png",
+        "phone": "+234-800-123-4567",
+        "address": "123 Innovation Road, Benin City",
+        "website": "https://edotechhub.com",
+        "membership": "Gold",
+        "info": "A leading technology innovation hub supporting startups and digital skills."
+    },
+    {
+        "name": "Benin Agro Ltd",
+        "image": "agro.png",
+        "phone": "+234-800-987-6543",
+        "address": "45 Green Farms Avenue, Benin City",
+        "website": "https://beninagro.com",
+        "membership": "Silver",
+        "info": "Agricultural company specializing in sustainable farming and food production."
+    },
+    {
+        "name": "Startup Hub",
+        "image": "startup.png",
+        "phone": "+234-800-333-2222",
+        "address": "12 Business Lane, Benin City",
+        "website": "https://startuphub.com",
+        "membership": "Bronze",
+        "info": "Community space for entrepreneurs and small businesses to collaborate."
+    },
+    {
+        "name": "Benin Fashion House",
+        "image": "fashion.png",
+        "phone": "+234-800-444-8888",
+        "address": "56 Style Street, Benin City",
+        "website": "https://beninfashion.com",
+        "membership": "Silver",
+        "info": "Creative fashion brand showcasing local designs and textiles."
+    }
+]
