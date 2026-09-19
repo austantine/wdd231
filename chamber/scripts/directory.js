@@ -55,25 +55,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-// ==============================
+    // ==============================
 // Weather API
 // ==============================
 const weatherContainer = document.getElementById("weather-info");
 if (weatherContainer) {
-    // Use your real API key here
-    const apiKey = "05411e64f3dddbff9f2c1db713a3c273";
-    // Use city ID for reliability (Benin City, Nigeria = 2347283)
-    const cityId = 2347283;
-    const url = `https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&appid=${apiKey}&units=metric`;
+    const apiKey = "YOUR_REAL_OPENWEATHERMAP_API_KEY"; // replace with your valid key
+    const city = "Benin,NG"; // try "Benin City,NG" if needed
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+
+    // Auto-detect environment: localhost = dev, otherwise production
+    const isDev = location.hostname === "localhost" || location.hostname === "127.0.0.1";
 
     async function getWeather() {
         try {
+            if (isDev) console.log("Fetching weather from:", url);
             const response = await fetch(url);
-            if (!response.ok) {
-                weatherContainer.innerHTML = `<p>Weather API error: ${response.status} ${response.statusText}</p>`;
-                throw new Error(`Weather API error: ${response.status} ${response.statusText}`);
-            }
+            if (!response.ok) throw new Error(`Weather API error: ${response.status}`);
             const data = await response.json();
+            if (isDev) console.log("Weather data loaded:", data);
 
             if (!data.list || data.list.length === 0) {
                 weatherContainer.innerHTML = "<p>No weather data available.</p>";
@@ -99,12 +99,11 @@ if (weatherContainer) {
             weatherContainer.innerHTML = html;
         } catch (error) {
             console.error("Error fetching weather:", error);
-            weatherContainer.innerHTML = `<p>Error loading weather data: ${error.message}</p>`;
+            weatherContainer.innerHTML = "<p>Error loading weather data.</p>";
         }
     }
     getWeather();
 }
-
 
     // ==============================
     // Company Spotlights
