@@ -1,4 +1,4 @@
-console.log("✅ chamber.js is loaded");
+console.log("✅ directory.js is loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
     // ==============================
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const weatherContainer = document.getElementById("weather-info");
     if (weatherContainer) {
         const apiKey = "REPLACE_WITH_YOUR_OPENWEATHERMAP_API_KEY"; // must be valid
-        const city = "Benin City,NG"; // add country code for reliability
+        const city = "Benin City,NG";
         const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
 
         async function getWeather() {
@@ -76,10 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const current = data.list[0];
                 let html = `
-          <p>🌡️ Current Temp: ${current.main.temp}°C</p>
-          <p>☁️ Condition: ${current.weather[0].description}</p>
-          <h3>3-Day Forecast</h3><ul>
-        `;
+                    <p>🌡️ Current Temp: ${current.main.temp}°C</p>
+                    <p>☁️ Condition: ${current.weather[0].description}</p>
+                    <h3>3-Day Forecast</h3><ul>
+                `;
 
                 for (let i = 1; i <= 3; i++) {
                     const forecast = data.list[i * 8];
@@ -124,13 +124,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     const card = document.createElement("div");
                     card.classList.add("spotlight-card", "community-card");
                     card.innerHTML = `
-            <img src="images/${member.image}" alt="${member.name} logo">
-            <h3>${member.name}</h3>
-            <p>📞 ${member.phone}</p>
-            <p>📍 ${member.address}</p>
-            <p><a href="${member.website}" target="_blank">Visit Website</a></p>
-            <p>Membership: ${member.membership}</p>
-          `;
+                        <img src="images/${member.image}" alt="${member.name} logo" loading="lazy">
+                        <h3>${member.name}</h3>
+                        <p>📞 ${member.phone}</p>
+                        <p>📍 ${member.address}</p>
+                        <p><a href="${member.website}" target="_blank">Visit Website</a></p>
+                        <p>Membership: ${member.membership}</p>
+                    `;
                     spotlightContainer.appendChild(card);
                 });
             } catch (error) {
@@ -140,4 +140,61 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         loadSpotlights();
     }
+
+    // ==============================
+// Chamber Directory Members
+// ==============================
+const membersContainer = document.getElementById("members");
+const gridBtn = document.getElementById("grid");
+const listBtn = document.getElementById("list");
+
+async function loadMembers() {
+    try {
+        const response = await fetch("data/members.json"); // this is the line you’re missing
+        if (!response.ok) throw new Error(`Members JSON error: ${response.status}`);
+        const members = await response.json();
+        displayMembers(members);
+    } catch (error) {
+        console.error("Error loading members:", error);
+        membersContainer.innerHTML = "<p>Error loading member directory.</p>";
+    }
+}
+
+function displayMembers(members) {
+    membersContainer.innerHTML = "";
+    members.forEach(member => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+            <img src="images/${member.image}" alt="${member.name} logo" loading="lazy">
+            <h3>${member.name}</h3>
+            <p>📍 ${member.address}</p>
+            <p>📞 ${member.phone}</p>
+            <p><a href="${member.website}" target="_blank">Visit Website</a></p>
+            <p>Membership: ${member.membership}</p>
+            <p>${member.info}</p>
+        `;
+        membersContainer.appendChild(card);
+    });
+}
+
+// Toggle buttons
+if (gridBtn && listBtn) {
+    gridBtn.addEventListener("click", () => {
+        membersContainer.classList.add("grid");
+        membersContainer.classList.remove("list");
+        membersContainer.querySelectorAll(".card img").forEach(img => img.style.display = "block");
+    });
+
+    listBtn.addEventListener("click", () => {
+        membersContainer.classList.add("list");
+        membersContainer.classList.remove("grid");
+        membersContainer.querySelectorAll(".card img").forEach(img => img.style.display = "none");
+    });
+}
+
+// Load members on page start
+if (membersContainer) {
+    loadMembers();
+} 
 });

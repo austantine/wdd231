@@ -179,16 +179,31 @@ nav {
         margin-bottom: 0.5rem;
     }
 }
-
 /* ==============================
    Footer
    ============================== */
-footer {
+   footer {
     background-color: var(--primary-color);
     color: var(--link-color);
     text-align: center;
     padding: 1rem;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer .info {
+    color: var(--link-color);
+}
+
+footer .info a {
+    color: var(--link-color);   /* force link text to white */
+    text-decoration: none;      /* optional: remove underline */
+}
+
+
+footer .info a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color); /* underline color */
+    text-decoration-thickness: 2px;             /* optional: make it bolder */
 }
 
 #year {
@@ -299,53 +314,27 @@ main {
 }
 
 /* ==============================
-   Dark Mode Overrides
+   Dark Mode
    ============================== */
-
-body.dark-mode .community-card {
-    background: var(--color-light);
-    color: #000000;
-}
-
-body.dark-mode .community-card h2 {
-    color: var(--color-primary);
-}
-
-/* Dark Mode Button Styling */
-#dark-mode-toggle {
-    background-color: var(--accent-color);
-    color: var(--link-color);
-    border: none;
-    padding: 0.5rem 1rem;
-    margin-top: 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-#dark-mode-toggle.dark {
-    background-color: #00adb5;
-    /* teal highlight in dark mode */
-    color: #000000;
-    /* black text for contrast */
-}
-
-
-/* Dark Mode Button Styling */
-#dark-mode-toggle {
-    background-color: var(--accent-color);
-    color: var(--link-color);
-    border: none;
-    padding: 0.5rem 1rem;
-    margin-top: 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-#dark-mode-toggle.dark {
-    background-color: #00adb5;
-    /* Bright teal in dark mode */
-    color: #000;
-    /* Dark text for contrast */
-}
+/* Dark Mode Overrides */
+body.dark-mode {
+    background-color: #111;   /* dark background */
+    color: #eee;              /* light text */
+  }
+  
+  body.dark-mode header,
+  body.dark-mode footer {
+    background-color: #222;   /* darker header/footer */
+    color: #fff;
+  }
+  
+  body.dark-mode .card {
+    background-color: #333;
+    color: #fff;
+    border-color: #555;
+  }
+  
+  body.dark-mode a {
+    color: #00adb5; /* teal links in dark mode */
+  }
+  
