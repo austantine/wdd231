@@ -4,6 +4,7 @@
 :root {
   --primary-color: #004466;
   --secondary-color: #f9f9f9;
+  --button-color:#0077cc;
   --text-color: #000000;
   --link-color: #ffffff;
   --border-color: #cccccc;
@@ -376,7 +377,7 @@ body.dark-mode .spotlights {
     gap: 1rem;
   }
   
-  .card {
+  .jcard {
     flex: 1 1 200px;
     padding: 1rem;
     border: 1px solid #ccc;
@@ -387,10 +388,10 @@ body.dark-mode .spotlights {
     animation: fadeInUp 1s ease-out forwards;
   }
   
-  .card:nth-child(1) { animation-delay: 0.2s; }
-  .card:nth-child(2) { animation-delay: 0.4s; }
-  .card:nth-child(3) { animation-delay: 0.6s; }
-  .card:nth-child(4) { animation-delay: 0.8s; }
+  .jcard:nth-child(1) { animation-delay: 0.2s; }
+  .jcard:nth-child(2) { animation-delay: 0.4s; }
+  .jcard:nth-child(3) { animation-delay: 0.6s; }
+  .jcard:nth-child(4) { animation-delay: 0.8s; }
   
   @keyframes fadeInUp {
     to {
@@ -404,8 +405,8 @@ body.dark-mode .spotlights {
     max-width: 600px;
     margin: 2rem auto;
     padding: 2rem;
-    background: #fdfdfd;
-    border: 1px solid #ddd;
+    background: var(--secondary-color);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   }
@@ -415,7 +416,7 @@ body.dark-mode .spotlights {
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1.8rem;
-    color: #333;
+    color: var(--dark-border);
   }
   
   /* Labels and inputs */
@@ -423,7 +424,7 @@ body.dark-mode .spotlights {
     display: block;
     margin-bottom: 1rem;
     font-weight: 600;
-    color: #222;
+    color:var(--dark-card-bg);
   }
   
   #join-form input,
@@ -432,7 +433,7 @@ body.dark-mode .spotlights {
     width: 100%;
     padding: 0.75rem;
     margin-top: 0.5rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
@@ -443,15 +444,15 @@ body.dark-mode .spotlights {
   #join-form input:focus,
   #join-form select:focus,
   #join-form textarea:focus {
-    border-color: #0077cc;
+    border-color: var(--button-color);
     box-shadow: 0 0 6px rgba(0,119,204,0.3);
     outline: none;
   }
   
   /* Submit button */
   #join-form input[type="submit"] {
-    background: #0077cc;
-    color: #fff;
+    background:var(--button-color);
+    color: var(--secondary-color);
     font-weight: bold;
     cursor: pointer;
     border: none;
@@ -460,7 +461,7 @@ body.dark-mode .spotlights {
   }
   
   #join-form input[type="submit"]:hover {
-    background: #005fa3;
+    background: var(--button-color);
   }
   
   /* Textarea */
@@ -477,8 +478,8 @@ body.dark-mode .spotlights {
     max-width: 600px;
     margin: 3rem auto;
     padding: 2rem;
-    background: #fdfdfd;
-    border: 1px solid #ddd;
+    background: var(--secondary-color);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     text-align: center;
@@ -486,14 +487,14 @@ body.dark-mode .spotlights {
   
   .thankyou-container h1 {
     font-size: 2rem;
-    color: #0077cc;
+    color: var(--button-color);
     margin-bottom: 1rem;
   }
   
   .thankyou-container p {
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
-    color: #333;
+    color: var(--dark-border);
   }
   
   .thankyou-container ul {
@@ -504,12 +505,12 @@ body.dark-mode .spotlights {
   
   .thankyou-container li {
     padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     font-weight: 500;
   }
   
   .thankyou-container span {
     font-weight: normal;
-    color: #555;
+    color:var(--dark-border);
   }
   
