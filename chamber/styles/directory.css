@@ -330,7 +330,7 @@ body.dark-mode {
     color: var(--link-color);
   }
   
-  body.dark-mode .card,
+  body.dark-mode .card, .jcard,
   body.dark-mode .spotlight-card {
     background-color: var(--dark-card-bg);
     color: var(--dark-text);
@@ -363,7 +363,7 @@ body.dark-mode .spotlights {
   }
 
   /* Dark mode override */
-  body.dark-mode .card h3 {
+  body.dark-mode .card .jcard h3 {
     color: var(--dark-text); /* this is #eeeeee from your variables */
   }
   
