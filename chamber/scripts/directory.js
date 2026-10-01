@@ -212,22 +212,40 @@ if (weatherContainer) {
     // Join Membership Page
     // ==============================
 // Auto-fill timestamp when form loads
-document.addEventListener("DOMContentLoaded", () => {
-    const tsField = document.getElementById("timestamp");
-    if (tsField) {
-      tsField.value = new Date().toISOString();
-    }
-  
-    // Modal triggers
-    document.querySelectorAll(".membership-cards a").forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        const modalId = link.getAttribute("href").replace("#", "");
-        const modal = document.getElementById(modalId);
-        if (modal) modal.showModal();
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const tsField = document.getElementById("timestamp");
+        if (tsField) {
+          tsField.value = new Date().toISOString();
+        }
+      
+        // Modal open triggers
+        document.querySelectorAll(".membership-cards a").forEach(link => {
+          link.addEventListener("click", e => {
+            e.preventDefault();
+            const modalId = link.getAttribute("href").replace("#", "");
+            const modal = document.getElementById(modalId);
+            if (modal) modal.showModal();
+          });
+        });
+      
+        // Modal close triggers
+        document.querySelectorAll(".close-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const targetId = btn.getAttribute("data-target");
+            const modal = document.getElementById(targetId);
+            if (modal) modal.close();
+          });
+        });
+      
+        // Optional: allow ESC key to close any open modal
+        document.addEventListener("keydown", e => {
+          if (e.key === "Escape") {
+            document.querySelectorAll("dialog[open]").forEach(modal => modal.close());
+          }
+        });
       });
-    });
-  });
+      
   
   // Thank You page population
 document.addEventListener("DOMContentLoaded", () => {
