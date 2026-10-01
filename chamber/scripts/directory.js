@@ -207,3 +207,25 @@ if (weatherContainer) {
         loadMembers();
     }
 });
+
+// ==============================
+    // Join Membership Page
+    // ==============================
+// Auto-fill timestamp when form loads
+document.addEventListener("DOMContentLoaded", () => {
+    const tsField = document.getElementById("timestamp");
+    if (tsField) {
+      tsField.value = new Date().toISOString();
+    }
+  
+    // Modal triggers
+    document.querySelectorAll(".membership-cards a").forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const modalId = link.getAttribute("href").replace("#", "");
+        const modal = document.getElementById(modalId);
+        if (modal) modal.showModal();
+      });
+    });
+  });
+  

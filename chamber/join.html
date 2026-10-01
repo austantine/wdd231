@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chamber of Commerce Join Page</title>
+    <meta name="description" content="Discover how to join our Chamber of Commerce Membership.">
+    <meta name="author" content="Augustine O. Airhiavbere">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- Facebook Open Graph Meta -->
+    <meta property="og:title" content="Chamber of Commerce Join Page">
+    <meta property="og:description" content="Discover how to join our Chamber of Commerce Membership.">
+    <meta property="og:image" content="https://austantine.github.io/wdd231/chamber/images/social-preview.png">
+    <meta property="og:url" content="https://austantine.github.io/wdd231/chamber/join.html">
+
+    <!-- Twitter Card Meta (extra SEO boost) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Chamber of Commerce Join Page">
+    <meta name="twitter:description" content="Discover how to join our Chamber of Commerce Membership.">
+    <meta name="twitter:image" content="https://austantine.github.io/wdd231/chamber/images/social-preview.png">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="styles/directory.css">
+    <link rel="stylesheet" href="styles/directory-responsive.css" media="(max-width: 768px)">
+    <!-- JavaScript -->
+    <script src="scripts/directory.js" defer></script>
+</head>
+
+
+<body>
+    <header>
+        <span class="site-title">Welcome to Join Our Chamber of Commerce</span>
+        <nav>
+            <button id="menu-toggle">☰</button>
+            <ul id="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="directory.html">Directory</a></li>
+                <li><a href="join.html">Join</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+          <img src="images/benin-skyline.webp" alt="Benin City Skyline" loading="lazy">
+          <div class="hero-text">
+            <h1 class="site-title">Join Our Membership of Chamber of Commerce</h1>
+            <a href="#join-form" class="cta-btn">Join Us Today</a>
+          </div>
+        </section>
+      
+        <!-- Membership Application Form -->
+        <section id="join-form">
+          <h2>Membership Application</h2>
+          <form method="get" action="thankyou.html">
+            <label>
+              First Name:
+              <input type="text" name="firstName" title="First Name" autocomplete="given-name" required>
+            </label>
+      
+            <label>
+              Last Name:
+              <input type="text" name="lastName" title="Last Name" autocomplete="family-name" required>
+            </label>
+      
+            <label>
+              Organizational Title:
+              <input type="text" name="orgTitle" title="Organizational Title" autocomplete="organization-title"
+                     pattern="[A-Za-z\\-\\s]{7,}">
+            </label>
+      
+            <label>
+              Email:
+              <input type="email" name="email" title="Email Address" autocomplete="email" placeholder="example@domain.com" required>
+            </label>
+      
+            <label>
+              Mobile Phone:
+              <input type="tel" name="phone" title="Mobile Phone" autocomplete="tel" required>
+            </label>
+      
+            <label>
+              Business/Organization Name:
+              <input type="text" name="organization" title="Organization" autocomplete="organization" required>
+            </label>
+      
+            <label>
+              Membership Level:
+              <select name="membership" title="Membership Level" required>
+                <option value="">Select a level...</option>
+                <option value="np">NP Membership (Non-Profit)</option>
+                <option value="bronze">Bronze Membership</option>
+                <option value="silver">Silver Membership</option>
+                <option value="gold">Gold Membership</option>
+              </select>
+            </label>
+      
+            <label>
+              Business Description:
+              <textarea name="description" title="Business Description"></textarea>
+            </label>
+      
+            <!-- Hidden timestamp -->
+            <input type="hidden" name="timestamp" id="timestamp">
+      
+            <input type="submit" value="Submit Application">
+          </form>
+        </section>
+      
+        <!-- Membership Cards -->
+        <section class="membership-cards">
+          <div class="card" id="np-card">
+            <h3>NP Membership</h3>
+            <p>No fee for non-profits.</p>
+            <a href="#np-modal">Learn More</a>
+          </div>
+          <div class="card" id="bronze-card">
+            <h3>Bronze Membership</h3>
+            <p>Affordable entry-level benefits.</p>
+            <a href="#bronze-modal">Learn More</a>
+          </div>
+          <div class="card" id="silver-card">
+            <h3>Silver Membership</h3>
+            <p>Expanded benefits and visibility.</p>
+            <a href="#silver-modal">Learn More</a>
+          </div>
+          <div class="card" id="gold-card">
+            <h3>Gold Membership</h3>
+            <p>Premium benefits and spotlight.</p>
+            <a href="#gold-modal">Learn More</a>
+          </div>
+        </section>
+      
+        <!-- Modals -->
+        <dialog id="np-modal">
+          <h3>NP Membership Benefits</h3>
+          <p>Access to events, networking, and training at no cost.</p>
+          <button onclick="document.getElementById('np-modal').close()">Close</button>
+        </dialog>
+      
+        <dialog id="bronze-modal">
+          <h3>Bronze Membership Benefits</h3>
+          <p>Discounted events, basic advertising, and networking opportunities.</p>
+          <button onclick="document.getElementById('bronze-modal').close()">Close</button>
+        </dialog>
+      
+        <dialog id="silver-modal">
+          <h3>Silver Membership Benefits</h3>
+          <p>Spotlight advertising, event discounts, and training programs.</p>
+          <button onclick="document.getElementById('silver-modal').close()">Close</button>
+        </dialog>
+      
+        <dialog id="gold-modal">
+          <h3>Gold Membership Benefits</h3>
+          <p>Premium spotlight, exclusive events, and maximum discounts.</p>
+          <button onclick="document.getElementById('gold-modal').close()">Close</button>
+        </dialog>
+      </main>
+      
+
+    <footer>
+        <p class="info">Contact: <a href="mailto:info@mychamber.org">info@mychamber.org</a> | Phone: (+234) 703-462-7247</p>
+        <p>🌴 Augustine O. Airhiavbere 🌴 | WDD 231</p>
+        <p>&copy; <span id="year"></span> 👨‍💻 Join My Chamber of Commerce 🧑‍💼</p>
+        <p>Last Modified: <span id="lastModified"></span></p>
+        <button id="dark-mode-toggle">🌙 Dark Mode</button>
+    </footer>
+</body>
+
+</html>
