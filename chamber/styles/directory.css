@@ -361,6 +361,7 @@ main {
     color: var(--dark-text); /* headings readable in dark mode */
   }
   
+  #np-modal h3,
   #np-modal p {
     color: var(--dark-card-bg);
 
