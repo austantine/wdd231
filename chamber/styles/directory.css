@@ -399,3 +399,117 @@ body.dark-mode .spotlights {
     }
   }
   
+  /* Form container */
+#join-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
+  
+  /* Form heading */
+  #join-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #333;
+  }
+  
+  /* Labels and inputs */
+  #join-form label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #222;
+  }
+  
+  #join-form input,
+  #join-form select,
+  #join-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Focus states */
+  #join-form input:focus,
+  #join-form select:focus,
+  #join-form textarea:focus {
+    border-color: #0077cc;
+    box-shadow: 0 0 6px rgba(0,119,204,0.3);
+    outline: none;
+  }
+  
+  /* Submit button */
+  #join-form input[type="submit"] {
+    background: #0077cc;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    margin-top: 1rem;
+    transition: background 0.3s ease;
+  }
+  
+  #join-form input[type="submit"]:hover {
+    background: #005fa3;
+  }
+  
+  /* Textarea */
+  #join-form textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  /* ==============================
+   Thank You Page
+   ============================== */
+   /* Thank You Page */
+.thankyou-container {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+  
+  .thankyou-container h1 {
+    font-size: 2rem;
+    color: #0077cc;
+    margin-bottom: 1rem;
+  }
+  
+  .thankyou-container p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .thankyou-container ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .thankyou-container li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    font-weight: 500;
+  }
+  
+  .thankyou-container span {
+    font-weight: normal;
+    color: #555;
+  }
+  

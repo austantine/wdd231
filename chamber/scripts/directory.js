@@ -229,3 +229,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
+  // Thank You page population
+document.addEventListener("DOMContentLoaded", () => {
+    const thankyouContainer = document.querySelector(".thankyou-container");
+    if (thankyouContainer) {
+      const params = new URLSearchParams(window.location.search);
+      ["firstName","lastName","email","phone","organization","timestamp"].forEach(field => {
+        const el = document.getElementById(field);
+        if (el) el.textContent = params.get(field);
+      });
+    }
+  });
+  
