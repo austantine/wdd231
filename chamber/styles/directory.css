@@ -56,13 +56,13 @@ header h1 {
 .site-title {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--link-color);
+    color: var(--primary-color); /* ensures contrast */
     margin: 0;
     text-align: start;
     line-height: 1.2;
     letter-spacing: 1px;
-}
-
+  }
+  
 /* ==============================
    Home Page Navigation
    ============================== */
