@@ -361,6 +361,10 @@ main {
     color: var(--dark-text); /* headings readable in dark mode */
   }
   
+  #np-modal p {
+    color: var(--dark-card-bg);
+
+  }
   
   /* ==============================
    Join Membership Page
