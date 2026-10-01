@@ -102,21 +102,28 @@ header h1 {
     text-align: center;
 }
 
+/* Spotlights Section */
 .spotlights {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  #spotlight-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns side by side */
+    gap: 1rem;
+    justify-items: center;
+  }
 
 .spotlight-card {
     border: 1px solid var(--border-color);
     background: var(--secondary-color);
-    margin: 1rem;
     padding: 1rem;
-    width: 250px;
     border-radius: 6px;
     box-shadow: 0 2px 4px var(--color-overlay-dark);
-}
+    width: 100%;
+    max-width: 300px; /* optional */
+  }
 
 .spotlight-card img {
     max-width: 100%;
