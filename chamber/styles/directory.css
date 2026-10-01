@@ -58,7 +58,7 @@ header h1 {
     font-weight: bold;
     color: var(--secondary-color); /* ensures contrast */
     margin: 0;
-    text-align: start;
+    text-align: center;
     line-height: 1.2;
     letter-spacing: 1px;
   }
