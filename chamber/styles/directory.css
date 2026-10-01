@@ -318,8 +318,7 @@ main {
 /* ==============================
    Dark Mode
    ============================== */
-/* Dark Mode Overrides */
-body.dark-mode {
+   body.dark-mode {
     background-color: var(--dark-bg);
     color: var(--dark-text);
   }
@@ -330,14 +329,17 @@ body.dark-mode {
     color: var(--link-color);
   }
   
-  body.dark-mode .card, .jcard,
-  body.dark-mode .spotlight-card {
+  body.dark-mode .card,
+  body.dark-mode .jcard,
+  body.dark-mode .spotlight-card,
+  body.dark-mode .thankyou-container {
     background-color: var(--dark-card-bg);
     color: var(--dark-text);
     border-color: var(--dark-border);
   }
   
-  body.dark-mode a {
+  body.dark-mode a,
+  body.dark-mode .spotlight-card a {
     color: var(--dark-link);
   }
   
@@ -346,26 +348,11 @@ body.dark-mode {
     background-color: var(--dark-bg);
     color: var(--dark-text);
   }
-  /* Dark Mode fix for spotlights on index.html */
-body.dark-mode .spotlights {
-    background-color: var(--dark-bg);   /* dark background for section */
-    color: var(--dark-text);            /* readable text */
+  
+  body.dark-mode h3 {
+    color: var(--dark-text); /* headings readable in dark mode */
   }
   
-  body.dark-mode .spotlight-card {
-    background-color: var(--dark-card-bg); /* dark card background */
-    color: var(--dark-text);               /* light text inside cards */
-    border-color: var(--dark-border);
-  }
-  
-  body.dark-mode .spotlight-card a {
-    color: var(--dark-link);               /* readable link color */
-  }
-
-  /* Dark mode override */
-  body.dark-mode .card .jcard h3 {
-    color: var(--dark-text); /* this is #eeeeee from your variables */
-  }
   
   /* ==============================
    Join Membership Page
