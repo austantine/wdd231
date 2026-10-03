@@ -295,12 +295,12 @@ footer .info a:hover {
     border-color: var(--dark-border);
   }
   
-  body.dark-mode a,
-  body.dark-mode .spotlight-card a {
+  body.dark-mode a
+   {
     color: var(--dark-link);
   }
   
-  body.dark-mode .spotlights,
+  
   body.dark-mode #members {
     background-color: var(--dark-bg);
     color: var(--dark-text);
@@ -309,3 +309,10 @@ footer .info a:hover {
   body.dark-mode h3 {
     color: var(--dark-text); /* headings readable in dark mode */
   }
+  body.dark-mode #dark-mode-toggle,
+body.dark-mode .view-buttons button,
+body.dark-mode #shuffle-btn {
+  background-color: var(--accent-color-dark);
+  color: var(--link-color);
+}
+
