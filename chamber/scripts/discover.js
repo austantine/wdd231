@@ -48,8 +48,8 @@
         });
     }
 
-  // ==============================
-// Discover Page Logic (Banner + Randomized + Shuffle Again + Expand/Collapse)
+ // ==============================
+// Discover Page Logic (Banner + Randomized + Shuffle Again + Expand/Collapse + Fade-in)
 // ==============================
 document.addEventListener("DOMContentLoaded", () => {
     const discoverGrid = document.querySelector(".discover-grid");
