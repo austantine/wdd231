@@ -1,0 +1,493 @@
+/* ==============================
+   Global Variables
+   ============================== */
+   :root {
+    --primary-color: #004466;
+    --secondary-color: #f9f9f9;
+    --button-color:#0077cc;
+    --text-color: #000000;
+    --link-color: #ffffff;
+    --border-color: #cccccc;
+    --accent-color: #c0392b;
+    --color-overlay-dark: rgba(0, 0, 0, 0.1);
+  
+    /* Dark mode equivalents */
+    --dark-bg: #111111;
+    --dark-card-bg: #333333;
+    --dark-text: #eeeeee;
+    --dark-link: #4da6ff;
+    --dark-border: #555555;
+  }
+  
+/* ==============================
+   Reset / Normalize Basics
+   ============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ==============================
+   Header Section
+   ============================== */
+header {
+    background-color: var(--primary-color);
+    color: var(--link-color);
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--link-color);
+}
+
+.site-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--secondary-color); /* ensures contrast */
+    margin: 0;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    padding: 0.5rem;
+  }
+  /* Hero Section */
+.hero {
+    position: relative;
+    text-align: center;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--link-color);
+}
+
+
+/* Navigation container */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Toggle button (mobile only) */
+#menu-toggle {
+    background-color: transparent;
+    border: none;
+    color: var(--link-color);
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: none;
+}
+
+/* Navigation links */
+#nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+#nav-links li a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+#nav-links li a.active {
+    text-decoration: underline;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: block;
+    }
+
+    #nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        padding: 1rem;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+    }
+
+    #nav-links li {
+        margin-bottom: 0.5rem;
+    }
+}
+/* ==============================
+   Footer
+   ============================== */
+   footer {
+    background-color: var(--primary-color);
+    color: var(--link-color);
+    text-align: center;
+    padding: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer .info {
+    color: var(--link-color);
+}
+
+footer .info a {
+    color: var(--link-color);   /* force link text to white */
+    text-decoration: none;      /* optional: remove underline */
+}
+
+
+footer .info a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color); /* underline color */
+    text-decoration-thickness: 2px;             /* optional: make it bolder */
+}
+
+#year {
+    padding-top: 1.5rem;
+}
+
+#lastModified {
+    padding-bottom: 0.5rem;
+}
+
+/* Dark Mode Toggle Button */
+#dark-mode-toggle {
+    background-color: var(--accent-color);
+    color: var(--link-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#dark-mode-toggle:hover {
+    opacity: 0.85;
+}
+
+/* ==============================
+   Main Content
+   ============================== */
+   main {
+    padding: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-buttons {
+    margin-bottom: 1rem;
+}
+
+.view-buttons button {
+    background-color: var(--accent-color);
+    border: none;
+    color: var(--link-color);
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-buttons button:hover {
+    opacity: 0.85;
+}
+
+/* ==============================
+   Member Cards
+   ============================== */
+#members.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+#members.list {
+    display: block;
+}
+
+#members.list .card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#members.list .card img {
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Default image styling for grid view */
+#members.grid .card img {
+    width: 90%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+.card {
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    background: var(--secondary-color);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px var(--color-overlay-dark);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.card a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* ==============================
+   Dark Mode
+   ============================== */
+   body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  
+  body.dark-mode header,
+  body.dark-mode footer {
+    background-color: var(--primary-color); /* keep brand color */
+    color: var(--link-color);
+  }
+  
+  body.dark-mode .card
+   {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+    border-color: var(--dark-border);
+  }
+  
+  body.dark-mode a,
+  body.dark-mode .spotlight-card a {
+    color: var(--dark-link);
+  }
+  
+  body.dark-mode .spotlights,
+  body.dark-mode #members {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  
+  body.dark-mode h3 {
+    color: var(--dark-text); /* headings readable in dark mode */
+  }
+
+  /*==========================================*/
+/* Discover Page Base Styles */
+/*==========================================*/
+
+/* Discover Grid */
+.discover-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+  }
+  
+  /* Discover Cards */
+  .discover-grid .card {
+    border: 1px solid var(--border-color);
+    background: var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .discover-grid .card h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+  }
+  
+  .discover-grid .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  
+  /* Hover effect (desktop only) */
+  @media (min-width: 641px) {
+    .discover-grid .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+  
+    .discover-grid .card img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+  }
+  
+  /* Fade-in animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Visitor Banner */
+  #visitor-message {
+    background-color: var(--button-color);
+    color: var(--secondary-color);
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 6px;
+    text-align: center;
+    max-width: 600px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  
+  /* Shuffle Button */
+  #shuffle-btn {
+    margin: 2rem auto;
+    display: block;
+    background-color: var(--accent-color);
+    color: var(--link-color);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  #shuffle-btn:hover {
+    background-color: #a93226; /* darker accent */
+  }
+  
+  /*==========================================*/
+  /* Discover Page Responsive Adjustments */
+  /*==========================================*/
+  
+  /* Small screens (≤ 640px) */
+  @media (max-width: 640px) {
+    .discover-grid {
+      grid-template-areas:
+        "card1"
+        "card2"
+        "card3"
+        "card4"
+        "card5"
+        "card6"
+        "card7"
+        "card8";
+    }
+  
+    #visitor-message {
+      font-size: 0.9rem;
+      padding: 0.75rem;
+      margin: 0.5rem;
+    }
+  
+    #shuffle-btn {
+      width: 90%;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+  
+  /* Medium screens (641px–1024px) */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .discover-grid {
+      grid-template-areas:
+        "card1 card2"
+        "card3 card4"
+        "card5 card6"
+        "card7 card8";
+    }
+  
+    #visitor-message {
+      font-size: 1rem;
+      padding: 1rem;
+    }
+  
+    #shuffle-btn {
+      width: auto;
+      font-size: 1rem;
+      padding: 0.75rem 1.25rem;
+    }
+  }
+  
+  /* Large screens (≥ 1025px) */
+  @media (min-width: 1025px) {
+    .discover-grid {
+      grid-template-areas:
+        "card1 card2 card3"
+        "card4 card5 card6"
+        "card7 card8 .";
+    }
+  
+    #visitor-message {
+      font-size: 1.1rem;
+      padding: 1.25rem;
+    }
+  
+    #shuffle-btn {
+      font-size: 1.1rem;
+      padding: 1rem 2rem;
+    }
+  }
+  
+  /* Assign grid areas to cards */
+  .discover-grid .card:nth-child(1) { grid-area: card1; }
+  .discover-grid .card:nth-child(2) { grid-area: card2; }
+  .discover-grid .card:nth-child(3) { grid-area: card3; }
+  .discover-grid .card:nth-child(4) { grid-area: card4; }
+  .discover-grid .card:nth-child(5) { grid-area: card5; }
+  .discover-grid .card:nth-child(6) { grid-area: card6; }
+  .discover-grid .card:nth-child(7) { grid-area: card7; }
+  .discover-grid .card:nth-child(8) { grid-area: card8; }
+  
+  
+  
