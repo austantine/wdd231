@@ -300,8 +300,8 @@ document.addEventListener("DOMContentLoaded", () => {
           // Shuffle members array
           const shuffled = members.sort(() => 0.5 - Math.random());
   
-          // Select first 8 after shuffle
-          const items = shuffled.slice(0, 8);
+          // Select first 9 after shuffle
+          const items = shuffled.slice(0, 9);
   
           // Clear grid before re-rendering
           discoverGrid.innerHTML = "";
