@@ -56,7 +56,8 @@ header h1 {
 .site-title {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--dark-bg); /* ensures contrast */
+    color: var(--secondary-color); /* ensures contrast */
+    text-shadow: var(--dark-bg) 1px 1px 2px; /* subtle shadow for readability */
     margin: 0;
     text-align: center;
     line-height: 1.2;
