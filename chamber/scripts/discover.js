@@ -19,7 +19,7 @@
     if (yearEl) yearEl.textContent = new Date().getFullYear();
     if (lastModifiedEl) lastModifiedEl.textContent = document.lastModified;
 
-    // ========================================
+        // ========================================
     // Dark Mode Toggle with Persistence
     // ========================================
     const toggleBtn = document.getElementById("dark-mode-toggle");
