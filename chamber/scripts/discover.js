@@ -48,9 +48,8 @@
         });
     }
 
-    
   // ==============================
-// Discover Page Logic (Banner + Randomized + Shuffle Again + Fade-in)
+// Discover Page Logic (Banner + Randomized + Shuffle Again + Expand/Collapse)
 // ==============================
 document.addEventListener("DOMContentLoaded", () => {
     const discoverGrid = document.querySelector(".discover-grid");
@@ -97,86 +96,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
           items.forEach((member, index) => {
             const card = document.createElement("section");
-            card.classList.add("card", "fade-in"); // add fade-in class
-            card.style.animationDelay = `${index * 0.1}s`; // staggered animation
-            card.innerHTML = `
-              <h2>${member.name}</h2>
-              <figure>
-                <img src="images/${member.image}" alt="${member.name}" loading="lazy">
-              </figure>
-              <address>${member.address}</address>
-              <p>${member.info}</p>
-              <button>Learn More</button>
-            `;
-            discoverGrid.appendChild(card);
-          });
-  
-          // Add Shuffle Again button if not already present
-          if (!document.getElementById("shuffle-btn")) {
-            const shuffleBtn = document.createElement("button");
-            shuffleBtn.id = "shuffle-btn";
-            shuffleBtn.textContent = "🔄 Shuffle Again";
-            shuffleBtn.addEventListener("click", loadDiscover);
-            discoverGrid.parentElement.appendChild(shuffleBtn);
-          }
-        } catch (error) {
-          console.error("Error loading discover items:", error);
-          discoverGrid.innerHTML = "<p>Error loading discover items.</p>";
-        }
-      }
-      loadDiscover();
-    }
-  });
-
-  // ==============================
-// Discover Page Logic (Expand/Collapse Learn More)
-// ==============================
-document.addEventListener("DOMContentLoaded", () => {
-    const discoverGrid = document.querySelector(".discover-grid");
-    const visitorMessage = document.getElementById("visitor-message");
-  
-    // --- Visitor Message using localStorage ---
-    if (visitorMessage) {
-      const lastVisit = localStorage.getItem("lastVisit");
-      const now = Date.now();
-      let messageText = "";
-  
-      if (!lastVisit) {
-        messageText = "👋 Welcome! Let us know if you have any questions.";
-      } else {
-        const days = Math.floor((now - lastVisit) / (1000 * 60 * 60 * 24));
-        if (days < 1) {
-          messageText = "⚡ Back so soon! Awesome!";
-        } else if (days === 1) {
-          messageText = "📅 You last visited 1 day ago.";
-        } else {
-          messageText = `📅 You last visited ${days} days ago.`;
-        }
-      }
-      localStorage.setItem("lastVisit", now);
-      visitorMessage.textContent = messageText;
-    }
-  
-    // --- Load Discover Cards from members.json ---
-    if (discoverGrid) {
-      async function loadDiscover() {
-        try {
-          const response = await fetch("data/members.json");
-          if (!response.ok) throw new Error(`Discover JSON error: ${response.status}`);
-          const members = await response.json();
-  
-          // Shuffle members array
-          const shuffled = members.sort(() => 0.5 - Math.random());
-  
-          // Select first 8 after shuffle
-          const items = shuffled.slice(0, 8);
-  
-          // Clear grid before re-rendering
-          discoverGrid.innerHTML = "";
-  
-          items.forEach((member) => {
-            const card = document.createElement("section");
             card.classList.add("card", "fade-in");
+            card.style.animationDelay = `${index * 0.1}s`;
             card.innerHTML = `
               <h2>${member.name}</h2>
               <figure>
