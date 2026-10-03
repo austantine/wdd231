@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chamber of Commerce Discover Page</title>
+  <meta name="description" content="Discover local businesses and attractions in our Chamber of Commerce directory.">
+  <meta name="author" content="Augustine O. Airhiavbere">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+  <!-- Social Meta -->
+  <meta property="og:title" content="Discover Page for Chamber of Commerce Directory">
+  <meta property="og:description" content="Discover local businesses and attractions in our Chamber of Commerce directory.">
+  <meta property="og:image" content="https://austantine.github.io/wdd231/chamber/images/social-preview.png">
+  <meta property="og:url" content="https://austantine.github.io/wdd231/chamber/discover.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Discover Page for Chamber of Commerce Directory">
+  <meta name="twitter:description" content="Discover local businesses and attractions in our Chamber of Commerce directory.">
+  <meta name="twitter:image" content="https://austantine.github.io/wdd231/chamber/images/social-preview.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles/directory.css">
+  <link rel="stylesheet" href="styles/directory-responsive.css">
+
+  <!-- JS -->
+  <script type="module" src="scripts/discover.js"></script>
+  <script src="scripts/directory.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <span class="site-title">Discover Page for Chamber of Commerce</span>
+    <br>
+    <nav>
+      <button id="menu-toggle">☰</button>
+      <ul id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="directory.html">Directory</a></li>
+        <li><a href="join.html">Join</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="discover.html" class="active">Discover</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <img src="images/benin-skyline.webp" alt="Benin City Skyline" loading="lazy">
+      <div class="hero-text">
+        <h1 class="site-title">Welcome to the Chamber</h1>
+      </div>
+    </section>
+
+    <!-- Visitor Message -->
+    <section id="visitor-message"></section>
+
+    <!-- Discover Grid -->
+    <section class="discover-grid">
+      <!-- Cards will be injected here dynamically from discover.js -->
+    </section>
+  </main>
+
+  <footer>
+    <p class="info">Contact: <a href="mailto:info@mychamber.org">info@mychamber.org</a> | Phone: (+234) 703-462-7247</p>
+    <p>🌴 Augustine O. Airhiavbere 🌴 | WDD 231</p>
+    <p>&copy; <span id="year"></span> 👨‍💻 My Chamber of Commerce 🧑‍💼</p>
+    <p>Last Modified: <span id="lastModified"></span></p>
+    <button id="dark-mode-toggle">🌙 Dark Mode</button>
+  </footer>
+</body>
+</html>
