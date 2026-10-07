@@ -247,7 +247,7 @@ if (progressSummary && progressChart) {
     gctx.stroke();
 
     // Text percentage (adapt to dark mode)
-    gctx.fillStyle = isDarkMode ? "#ffffff" : "#333";
+    gctx.fillStyle = isDarkMode ? "#ffffff" : "#333333";
     gctx.font = "20px Roboto";
     gctx.textAlign = "center";
     gctx.fillText(`${Math.round(percent * 100)}%`, 100, 110);

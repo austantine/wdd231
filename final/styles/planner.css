@@ -627,12 +627,18 @@ body.dark-mode {
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
-body.dark-mode .cta-button,
-body.dark-mode .progress-legend span,
-body.dark-mode .completion-gauge canvas {
+body.dark-mode .cta-button{
   color: var(--link-color);
 }
 
+
+body.dark-mode .progress-legend span {
+  color: var(--link-color);/* legend labels in white */
+}
+
+body.dark-mode #progressSummary {
+  color: var(--link-color); /* summary text in white */
+}
 
 /* Dark mode for progress summary */
 body.dark-mode #progressSummary {
