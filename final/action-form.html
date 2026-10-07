@@ -58,15 +58,20 @@
       <h1>Form Submission Results</h1>
       <p class="subtitle">Here are the details you submitted:</p>
       <div id="formData"></div>
-      <a href="tasks.html" class="btn-back">⬅ Back to Planner</a>
+
+      <!-- Back button -->
+      <a href="tasks.html" class="btn-back" id="backToPlanner">⬅ Back to Planner</a>
     </section>
   </main>
+
   <footer>
     <p class="info">Contact: <a href="austantine@gmail.com">austantine@gmail.com</a> | Phone: (+234) 703-462-7247</p>
     <p>🌴 Augustine O. Airhiavbere 🌴 | WDD 231 Final Project</p>
     <p>&copy; <span id="year"></span> 👨‍💻 My Student Study planner🧑‍💼</p>
     <p>Last Modified: <span id="lastModified"></span></p>
     <button id="dark-mode-toggle">🌙 Dark Mode</button>
+    <!-- Success sound -->
+  <audio id="successSound" src="sounds/success-chime.mp3" preload="auto"></audio>
 </footer>
 </body>
 </html>

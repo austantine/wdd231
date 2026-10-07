@@ -90,6 +90,7 @@ if (taskForm) {
     }
   }
 
+  // render tasks with Completed/Uncompleted buttons
   function renderTasks() {
     const taskList = document.getElementById('taskList');
     taskList.innerHTML = '';
@@ -110,6 +111,7 @@ if (taskForm) {
     });
   }
 
+  // Add new task locally and update localStorage
   taskForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const title = document.getElementById('taskTitle').value.trim();
@@ -121,9 +123,16 @@ if (taskForm) {
     tasks.push({ title, deadline, category, status: 'pending' });
     localStorage.setItem('tasks', JSON.stringify(tasks));
     renderTasks();
+
+    // Populate hidden submission form for action-form.html
+    document.getElementById('submitTaskTitle').value = title;
+    document.getElementById('submitTaskDeadline').value = deadline;
+    document.getElementById('submitTaskCategory').value = category;
+
     e.target.reset();
   });
 
+  //Handle delete, complete, and uncomplete actions
   document.getElementById('taskList').addEventListener('click', (e) => {
     const index = e.target.getAttribute('data-index');
     if (e.target.classList.contains('delete-btn')) {
@@ -194,35 +203,57 @@ if (taskForm) {
     modal.setAttribute("aria-hidden", "true");
   });
 
-  // ==============================
-  // Action Form Page Logic
-  // ==============================
-  const formDataDiv = document.getElementById("formData");
-  const successBanner = document.getElementById("successBanner");
-  const dismissBtn = document.getElementById("dismissBanner");
+ // ==============================
+// Action Form Page Logic
+// ==============================
+const formDataDiv = document.getElementById("formData");
+const successBanner = document.getElementById("successBanner");
+const dismissBtn = document.getElementById("dismissBanner");
+const backBtn = document.getElementById("backToPlanner");
+const successSound = document.getElementById("successSound");
 
-  if (formDataDiv) {
-    const params = new URLSearchParams(window.location.search);
-    formDataDiv.innerHTML = `
-      <p><strong>Task Title:</strong> ${params.get("taskTitle") || "N/A"}</p>
-      <p><strong>Deadline:</strong> ${params.get("taskDeadline") || "N/A"}</p>
-      <p><strong>Category:</strong> ${params.get("taskCategory") || "N/A"}</p>
-    `;
+if (formDataDiv) {
+  // Fade-in banner when page loads
+  successBanner.classList.add("show");
 
-    dismissBtn?.addEventListener("click", () => {
+  // Play success sound (if available)
+  successSound?.play().catch(err => {
+    console.warn("Audio playback blocked until user interaction:", err);
+  });
+
+  // Display submitted form data from query string
+  const params = new URLSearchParams(window.location.search);
+  formDataDiv.innerHTML = `
+    <p><strong>Task Title:</strong> ${params.get("taskTitle") || "N/A"}</p>
+    <p><strong>Deadline:</strong> ${params.get("taskDeadline") || "N/A"}</p>
+    <p><strong>Category:</strong> ${params.get("taskCategory") || "N/A"}</p>
+  `;
+
+  // Dismiss banner manually
+  dismissBtn?.addEventListener("click", () => {
+    successBanner.classList.add("dismissed");
+    successBanner.addEventListener("transitionend", () => {
+      successBanner.style.display = "none";
+    }, { once: true });
+  });
+
+  // Auto-dismiss after 5 seconds
+  setTimeout(() => {
+    if (successBanner && successBanner.style.display !== "none") {
       successBanner.classList.add("dismissed");
-      successBanner.addEventListener("animationend", () => {
+      successBanner.addEventListener("transitionend", () => {
         successBanner.style.display = "none";
       }, { once: true });
-    });
+    }
+  }, 5000);
 
-    setTimeout(() => {
-      if (successBanner && successBanner.style.display !== "none") {
-        successBanner.classList.add("dismissed");
-        successBanner.addEventListener("animationend", () => {
-          successBanner.style.display = "none";
-        }, { once: true });
-      }
-    }, 5000);
-  }
+  // Back to Planner button clears banner state
+  backBtn?.addEventListener("click", () => {
+    if (successBanner) {
+      successBanner.style.display = "none";
+      successBanner.classList.remove("dismissed", "show");
+    }
+  });
+}
+
 });
