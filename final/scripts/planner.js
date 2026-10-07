@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Redraw progress page immediately when theme changes
     const progressSummary = document.getElementById('progressSummary');
+    const progressChart = document.getElementById('progressChart');
+    
   }
 
   if (darkToggle) {
