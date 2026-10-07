@@ -282,6 +282,15 @@ if (progressSummary && progressChart) {
     modal.setAttribute("aria-hidden", "true");
   });
 
+  // Close modal with Esc key
+    document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    taskModal.style.display = "none";
+    taskModal.setAttribute("aria-hidden", "true");
+  }
+  });
+
+
  // ==============================
 // Action Form Page Logic
 // ==============================

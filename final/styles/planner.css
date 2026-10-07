@@ -19,8 +19,14 @@
         --text-color: #333333;
         --button-color:#0077cc;
         --link-color: #ffffff;
+        --about-color1: #fdfdfd;
+        --about-color2: #f5f9ff;
         --border-color: #cccccc;
         --hero-bg:  #e6f0ff;
+        --planner-bg: #e0e0e0;
+        --planner-text: #e8f5e9;
+        --box-shadow-about: rgba(0,0,0,0.08);
+        --box-shadow-highlight: rgba(0,0,0,0.05);
         --color-overlay-dark: rgba(0, 0, 0, 0.2);
         --shadow-box-color: rgba(0,64,128,0.1);
         --shadow-box-hover: rgba(46, 125, 50, 0.4);
@@ -28,10 +34,17 @@
   
     /* Dark mode equivalents */
     --dark-bg: #111111;
+    --about-dark-text1: #1e1e1e;
+    --about-dark-text2: #2a2a2a;
     --dark-card-bg: #333333;
     --dark-text: #eeeeee;
+    --dark-text2: #e0e0e0;
     --dark-link: #4da6ff;
     --dark-border: #555555;
+    --dark-highlight: #90caf9;
+    --dark-blue: #263238; 
+    --dark-lemon: #a5d6a7;
+    
   }
   
   
@@ -203,11 +216,12 @@ header {
   max-width: 900px;
   margin: 3rem auto;
   padding: 2rem;
-  background: var(--card-bg, --link-color);
+  background: linear-gradient(135deg, --about-color1,--about-color2);
   border-radius: 12px;
-  box-shadow: 0 4px 16px var(--color-overlay-dark);
+  box-shadow: 0 4px 16px var(--box-shadow-about);
   font-family: 'Roboto', sans-serif;
   line-height: 1.7;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .about-planner h2 {
@@ -219,27 +233,23 @@ header {
 
 .about-planner p {
   font-size: 1.05rem;
-  color: var(--text-color, --primary-color);
+  color: var(--text-color);
   margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
-.about-planner .key-features,
-.about-planner .benefits {
-  margin: 1.5rem 0;
+/* Dark Mode Overrides */
+body.dark-mode .about-planner {
+  background: linear-gradient(135deg, --about-dark-text1, --about-dark-text2);
+  color: var(--dark-text, --dark-text2);
 }
 
-.about-planner ul {
-  list-style: none;
-  padding: 0;
+body.dark-mode .about-planner h2 {
+  color: var(--highlight-color, --dark-highlight);
 }
 
-.about-planner ul li {
-  background: var(--light-bg, --background-color);
-  margin: 0.5rem 0;
-  padding: 0.7rem 1rem;
-  border-left: 4px solid var(--accent-color, --primary-color);
-  border-radius: 6px;
-  font-size: 0.95rem;
+body.dark-mode .about-planner p {
+  color: var(--dark-text, --planner-bg);
 }
 
 /* Highlighted closing line */
@@ -247,13 +257,20 @@ header {
   margin-top: 1.5rem;
   font-size: 1.2rem;
   font-weight: bold;
-  color: var(--success-color, --accent-color);
+  color: var(--success-color);
   text-align: center;
-  background: var(--background-color);
+  background:var(--planner-text);
   padding: 1rem;
   border-radius: 8px;
-  box-shadow: inset 0 0 6px var(--color-overlay-dark);
+  box-shadow: inset 0 0 6px var(--box-shadow-highlight);
 }
+
+body.dark-mode .about-highlight {
+  background: var(--dark-blue);
+  color: var(--dark-lemon);
+  box-shadow: inset 0 0 6px var(--box-shadow-highlight);
+}
+
 
   
   /* ===========================
@@ -542,6 +559,44 @@ footer .info a:hover {
     transform: translateY(0);
   }
   
+  /* Modal overlay */
+.modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal content */
+.modal-content {
+  background: var(--link-color);
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 12px var(--color-overlay-dark);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Close button */
+.modal .close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
   /* ==============================
    Dark Mode
    ============================== */
@@ -573,12 +628,18 @@ body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
 body.dark-mode .cta-button,
-body.dark-mode .progress-legend span {
+body.dark-mode .progress-legend span{
   color: var(--dark-text);
 }
 
-  
-  body.dark-mode a {
+body.dark-mode a {
     color: var(--dark-link);
   }
+
+/* Dark mode override modal*/
+body.dark-mode .modal-content {
+  background: var(--text-color);
+  color: var(--dark-text);
+}
+
   
