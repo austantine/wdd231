@@ -623,20 +623,31 @@ body.dark-mode {
     border-color: var(--dark-border);
   }
   
-/* Dark mode adjustments */
+/* Dark mode adjustments 
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
 body.dark-mode .cta-button{
   color: var(--dark-text);
+}*/
+
+/* Dark mode adjustments */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode .cta-button {
+  color: #ffffff; /* headings and buttons in white */
 }
 
-
-/* Dark mode for progress summary */
-body.dark-mode #progressSummary,
 body.dark-mode .progress-legend span {
-  color: var(--dark-link); /* pure white for clarity */
+  color: #ffffff; /* legend labels in white */
 }
+
+body.dark-mode #progressSummary {
+  color: #ffffff; /* summary text in white */
+}
+
+
 
 body.dark-mode a {
     color: var(--dark-link);
