@@ -628,21 +628,14 @@ body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
 body.dark-mode .cta-button{
-  color: var(--link-color);
+  color: var(--dark-text);
 }
 
-
-body.dark-mode .progress-legend span {
-  color: var(--link-color);/* legend labels in white */
-}
-
-body.dark-mode #progressSummary {
-  color: var(--link-color); /* summary text in white */
-}
 
 /* Dark mode for progress summary */
-body.dark-mode #progressSummary {
-  color: var(--link-color); /* pure white for clarity */
+body.dark-mode #progressSummary,
+body.dark-mode .progress-legend span {
+  color: var(--dark-link); /* pure white for clarity */
 }
 
 body.dark-mode a {
