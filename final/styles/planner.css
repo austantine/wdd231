@@ -21,7 +21,7 @@
         --link-color: #ffffff;
         --border-color: #cccccc;
         --hero-bg:  #e6f0ff;
-        --color-overlay-dark: rgba(0, 0, 0, 0.1);
+        --color-overlay-dark: rgba(0, 0, 0, 0.2);
         --shadow-box-color: rgba(0,64,128,0.1);
         --shadow-box-hover: rgba(46, 125, 50, 0.4);
         --color-overlay-grey: rgba(255,255,255,0.2);
@@ -197,8 +197,68 @@ header {
   .link-card .btn:hover {
     background: var(--hover-color);
   }
+
+  /* About Planner Section */
+.about-planner {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: var(--card-bg, --link-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px var(--color-overlay-dark);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.7;
+}
+
+.about-planner h2 {
+  font-size: 1.8rem;
+  color: var(--accent-color, --primary-color);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.about-planner p {
+  font-size: 1.05rem;
+  color: var(--text-color, --primary-color);
+  margin-bottom: 1rem;
+}
+
+.about-planner .key-features,
+.about-planner .benefits {
+  margin: 1.5rem 0;
+}
+
+.about-planner ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-planner ul li {
+  background: var(--light-bg, --background-color);
+  margin: 0.5rem 0;
+  padding: 0.7rem 1rem;
+  border-left: 4px solid var(--accent-color, --primary-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* Highlighted closing line */
+.about-highlight {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--success-color, --accent-color);
+  text-align: center;
+  background: var(--background-color);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: inset 0 0 6px var(--color-overlay-dark);
+}
+
   
-  /* Task Manager */
+  /* ===========================
+    Task Manager 
+  ==============================*/
   form {
     display: flex;
     gap: 0.5rem;
@@ -512,7 +572,7 @@ body.dark-mode {
   body.dark-mode h2,
   body.dark-mode h3,
   body.dark-mode .cta-button,
-  body.dark-mode .progress-legend {
+  body.dark-mode .progress-legend span {
     color: var(--dark-text);
   }
   
