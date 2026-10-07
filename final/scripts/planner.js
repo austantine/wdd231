@@ -157,31 +157,110 @@ if (taskForm) {
 
 
   // ==============================
-  // Progress Page Logic
-  // ==============================
-  const progressSummary = document.getElementById('progressSummary');
-  const progressChart = document.getElementById('progressChart');
-  if (progressSummary && progressChart) {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const completed = tasks.filter(t => t.status === 'completed').length;
-    const pending = tasks.length - completed;
+//    Progress Page
+// ==============================
+const progressSummary = document.getElementById('progressSummary');
+const progressChart = document.getElementById('progressChart');
+const categoryProgress = document.getElementById("categoryProgress");
+const completionGauge = document.getElementById("completionGauge");
+const motivationMessage = document.getElementById("motivationMessage");
 
-    progressSummary.textContent = `Completed: ${completed} | Pending: ${pending}`;
+if (progressSummary && progressChart) {
+  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  const completed = tasks.filter(t => t.status === 'completed').length;
+  const pending = tasks.length - completed;
+  const total = completed + pending || 1;
+  const percent = completed / total;
 
-    const ctx = progressChart.getContext('2d');
-    const total = completed + pending || 1;
+  // Summary text
+  progressSummary.textContent = `Completed: ${completed} | Pending: ${pending}`;
 
-    ctx.clearRect(0, 0, progressChart.width, progressChart.height);
+  // Draw bar chart
+  const ctx = progressChart.getContext('2d');
+  ctx.clearRect(0, 0, progressChart.width, progressChart.height);
 
-    ctx.fillStyle = '#4CAF50';
-    ctx.fillRect(50, 50, (completed / total) * 200, 30);
+  const completedWidth = (completed / total) * 200;
+  const pendingWidth = (pending / total) * 200;
 
-    ctx.fillStyle = '#f44336';
-    ctx.fillRect(50 + (completed / total) * 200, 50, (pending / total) * 200, 30);
+  // Completed bar
+  ctx.fillStyle = '#4CAF50';
+  ctx.fillRect(50, 50, completedWidth, 30);
 
-    ctx.strokeStyle = '#004080';
-    ctx.strokeRect(50, 50, 200, 30);
+  // Pending bar
+  ctx.fillStyle = '#f44336';
+  ctx.fillRect(50 + completedWidth, 50, pendingWidth, 30);
+
+  // Border
+  ctx.strokeStyle = '#004080';
+  ctx.strokeRect(50, 50, 200, 30);
+
+  // Tooltip logic
+  progressChart.addEventListener('mousemove', (e) => {
+    const rect = progressChart.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Clear tooltip area
+    ctx.clearRect(0, 90, progressChart.width, 40);
+
+    if (y >= 50 && y <= 80 && x >= 50 && x <= 250) {
+      ctx.fillStyle = '#333';
+      ctx.font = '14px Roboto';
+      ctx.textAlign = 'center';
+
+      if (x <= 50 + completedWidth) {
+        ctx.fillText(`Completed: ${completed}`, 150, 110);
+      } else {
+        ctx.fillText(`Pending: ${pending}`, 150, 110);
+      }
+    }
+  });
+
+  // Category Breakdown
+  if (categoryProgress) {
+    const categories = ["reading", "assignment", "exam-prep"];
+    categoryProgress.innerHTML = categories.map(cat => {
+      const totalCat = tasks.filter(t => t.category === cat).length;
+      const completedCat = tasks.filter(t => t.category === cat && t.status === "completed").length;
+      return `<li>${cat}: ${completedCat}/${totalCat} completed</li>`;
+    }).join("");
   }
+
+  // Circular Gauge
+  if (completionGauge) {
+    const gctx = completionGauge.getContext("2d");
+
+    // Background circle
+    gctx.strokeStyle = "#ddd";
+    gctx.lineWidth = 15;
+    gctx.beginPath();
+    gctx.arc(100, 100, 80, 0, 2 * Math.PI);
+    gctx.stroke();
+
+    // Progress arc
+    gctx.strokeStyle = "#4CAF50";
+    gctx.beginPath();
+    gctx.arc(100, 100, 80, -Math.PI/2, (2 * Math.PI * percent) - Math.PI/2);
+    gctx.stroke();
+
+    // Text percentage
+    gctx.fillStyle = "#333";
+    gctx.font = "20px Roboto";
+    gctx.textAlign = "center";
+    gctx.fillText(`${Math.round(percent * 100)}%`, 100, 110);
+  }
+
+  // Motivational Message
+  if (motivationMessage) {
+    if (percent === 1) {
+      motivationMessage.textContent = "🎉 Fantastic! All tasks completed!";
+    } else if (percent >= 0.5) {
+      motivationMessage.textContent = "👍 Great job! Keep pushing!";
+    } else {
+      motivationMessage.textContent = "💡 Stay focused, you can do it!";
+    }
+  }
+}
 
   // ==============================
   // Modal Dialog Example

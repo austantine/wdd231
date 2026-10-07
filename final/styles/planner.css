@@ -244,7 +244,9 @@ header {
     background: var(--task-bg-color);
   }
   
-  /* Progress Tracker */
+  /* ============================== 
+    Progress Tracker 
+    ===============================*/
   #progressSummary {
     margin-bottom: 1rem;
     font-size: 1.2rem;
@@ -256,6 +258,80 @@ header {
     border: 1px solid var(--border-color);
     border-radius: 6px;
   }
+
+  /* Progress Tracker Section */
+.progress-tracker {
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Category Breakdown */
+.progress-categories {
+  margin-top: 2rem;
+  text-align: left;
+}
+.progress-categories h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.progress-categories ul {
+  list-style: none;
+  padding: 0;
+}
+.progress-categories li {
+  background: var(--card-bg, --background-color);
+  margin: 0.3rem 0;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+/* Legend styles */
+.progress-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.progress-legend span {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.legend-box {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+  border-radius: 3px;
+}
+.legend-completed {
+  background-color: var(--accent-color) /* same as completed bar */
+}
+.legend-pending {
+  background-color: var(--danger-color) /* same as pending bar */
+}
+
+
+/* Circular Gauge */
+.completion-gauge {
+  margin-top: 2rem;
+}
+.completion-gauge canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Motivational Message */
+.motivation {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--accent-color, --primary-color);
+}
 
 
 /* ==============================
