@@ -32,35 +32,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==============================
-  // Dark Mode Toggle with LocalStorage
-  // ==============================
-  const darkToggle = document.getElementById("dark-mode-toggle");
+// Dark Mode Toggle with LocalStorage
+// ==============================
+const darkToggle = document.getElementById("dark-mode-toggle");
 
-  function applyTheme(theme) {
-    if (theme === "dark") {
-      document.body.classList.add("dark-mode");
-      darkToggle.textContent = "☀️ Light Mode";
-    } else {
-      document.body.classList.remove("dark-mode");
-      darkToggle.textContent = "🌙 Dark Mode";
-    }
-
-    // Redraw progress page immediately when theme changes
-    const progressSummary = document.getElementById('progressSummary');
-    const progressChart = document.getElementById('progressChart');
-    
+function applyTheme(theme) {
+  if (theme === "dark") {
+    document.body.classList.add("dark-mode");
+    darkToggle.textContent = "☀️ Light Mode";
+  } else {
+    document.body.classList.remove("dark-mode");
+    darkToggle.textContent = "🌙 Dark Mode";
   }
 
-  if (darkToggle) {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    applyTheme(savedTheme);
+  // Redraw progress page immediately when theme changes
+  drawProgressPage();
+}
 
-    darkToggle.addEventListener("click", () => {
-      const newTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
-      localStorage.setItem("theme", newTheme);
-      applyTheme(newTheme);
-    });
-  }
+if (darkToggle) {
+  const savedTheme = localStorage.getItem("theme") || "light";
+  applyTheme(savedTheme);
+
+  darkToggle.addEventListener("click", () => {
+    const newTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+    localStorage.setItem("theme", newTheme);
+    applyTheme(newTheme);
+  });
+}
+
 
   // ==============================
   // Index Page CTA Button
@@ -161,115 +160,135 @@ if (taskForm) {
 }
 
 // ==============================
-//    Progress Page
+// Progress Page Logic
 // ==============================
-const progressSummary = document.getElementById('progressSummary');
-const progressChart = document.getElementById('progressChart');
-const categoryProgress = document.getElementById("categoryProgress");
-const completionGauge = document.getElementById("completionGauge");
-const motivationMessage = document.getElementById("motivationMessage");
+function drawProgressPage() {
+  const progressSummary = document.getElementById('progressSummary');
+  const progressChart = document.getElementById('progressChart');
+  const categoryProgress = document.getElementById("categoryProgress");
+  const completionGauge = document.getElementById("completionGauge");
+  const motivationMessage = document.getElementById("motivationMessage");
 
-if (progressSummary && progressChart) {
-  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  const completed = tasks.filter(t => t.status === 'completed').length;
-  const pending = tasks.length - completed;
-  const total = completed + pending || 1;
-  const percent = completed / total;
+  if (progressSummary && progressChart) {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const completed = tasks.filter(t => t.status === 'completed').length;
+    const pending = tasks.length - completed;
+    const total = completed + pending || 1;
+    const percent = completed / total;
 
-  // Detect dark mode
-  const isDarkMode = document.body.classList.contains("dark-mode");
+    const isDarkMode = document.body.classList.contains("dark-mode");
 
-  // Summary text
-  progressSummary.textContent = `Completed: ${completed} | Pending: ${pending}`;
-  progressSummary.style.color = isDarkMode ? "#ffffff" : "#004080";
+    // Helper to pull CSS variables
+    function getCSSVar(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
 
-  // Draw bar chart
-  const ctx = progressChart.getContext('2d');
-  ctx.clearRect(0, 0, progressChart.width, progressChart.height);
+    const accentColor = getCSSVar("--accent-color");
+    const dangerColor = getCSSVar("--danger-color");
+    const textColor = isDarkMode ? getCSSVar("--dark-text") : getCSSVar("--text-color");
+    const primaryColor = getCSSVar("--primary-color");
 
-  const completedWidth = (completed / total) * 200;
-  const pendingWidth = (pending / total) * 200;
+    // ==============================
+    // Summary Text
+    // ==============================
+    progressSummary.textContent = `Completed: ${completed} | Pending: ${pending}`;
+    progressSummary.style.color = textColor;
 
-  // Completed bar
-  ctx.fillStyle = '#4CAF50';
-  ctx.fillRect(50, 50, completedWidth, 30);
+    // ==============================
+    // Bar Chart
+    // ==============================
+    const ctx = progressChart.getContext('2d');
+    ctx.clearRect(0, 0, progressChart.width, progressChart.height);
 
-  // Pending bar
-  ctx.fillStyle = '#f44336';
-  ctx.fillRect(50 + completedWidth, 50, pendingWidth, 30);
+    const completedWidth = (completed / total) * 200;
+    const pendingWidth = (pending / total) * 200;
 
-  // Border
-  ctx.strokeStyle = '#004080';
-  ctx.strokeRect(50, 50, 200, 30);
+    ctx.fillStyle = accentColor;
+    ctx.fillRect(50, 50, completedWidth, 30);
 
-  // Tooltip logic
-  progressChart.addEventListener('mousemove', (e) => {
-    const rect = progressChart.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    ctx.fillStyle = dangerColor;
+    ctx.fillRect(50 + completedWidth, 50, pendingWidth, 30);
 
-    // Clear tooltip area
-    ctx.clearRect(0, 90, progressChart.width, 40);
+    ctx.strokeStyle = primaryColor;
+    ctx.strokeRect(50, 50, 200, 30);
 
-    if (y >= 50 && y <= 80 && x >= 50 && x <= 250) {
-      ctx.fillStyle = isDarkMode ? "#ffffff" : "#333333";
-      ctx.font = '14px Roboto';
-      ctx.textAlign = 'center';
+    // Tooltip
+    progressChart.onmousemove = (e) => {
+      const rect = progressChart.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-      if (x <= 50 + completedWidth) {
-        ctx.fillText(`Completed: ${completed}`, 150, 110);
-      } else {
-        ctx.fillText(`Pending: ${pending}`, 150, 110);
+      ctx.clearRect(0, 90, progressChart.width, 40);
+
+      if (y >= 50 && y <= 80 && x >= 50 && x <= 250) {
+        ctx.fillStyle = textColor;
+        ctx.font = '14px Roboto';
+        ctx.textAlign = 'center';
+        ctx.fillText(
+          x <= 50 + completedWidth ? `Completed: ${completed}` : `Pending: ${pending}`,
+          150, 110
+        );
       }
+    };
+
+    // ==============================
+    // Category Breakdown
+    // ==============================
+    if (categoryProgress) {
+      const categories = ["reading", "assignment", "exam-prep"];
+      categoryProgress.innerHTML = categories.map(cat => {
+        const totalCat = tasks.filter(t => t.category === cat).length;
+        const completedCat = tasks.filter(t => t.category === cat && t.status === "completed").length;
+        return `<li>${cat}: ${completedCat}/${totalCat} completed</li>`;
+      }).join("");
     }
-  });
 
-  // Category Breakdown
-  if (categoryProgress) {
-    const categories = ["reading", "assignment", "exam-prep"];
-    categoryProgress.innerHTML = categories.map(cat => {
-      const totalCat = tasks.filter(t => t.category === cat).length;
-      const completedCat = tasks.filter(t => t.category === cat && t.status === "completed").length;
-      return `<li>${cat}: ${completedCat}/${totalCat} completed</li>`;
-    }).join("");
-  }
+    // ==============================
+    // Circular Gauge
+    // ==============================
+    if (completionGauge) {
+      const gctx = completionGauge.getContext("2d");
+      gctx.clearRect(0, 0, completionGauge.width, completionGauge.height);
 
-  // Circular Gauge
-  if (completionGauge) {
-    const gctx = completionGauge.getContext("2d");
+      // Background circle
+      gctx.strokeStyle = "#ddd";
+      gctx.lineWidth = 15;
+      gctx.beginPath();
+      gctx.arc(100, 100, 80, 0, 2 * Math.PI);
+      gctx.stroke();
 
-    // Background circle
-    gctx.strokeStyle = "#ddd";
-    gctx.lineWidth = 15;
-    gctx.beginPath();
-    gctx.arc(100, 100, 80, 0, 2 * Math.PI);
-    gctx.stroke();
+      // Progress arc
+      gctx.strokeStyle = accentColor;
+      gctx.beginPath();
+      gctx.arc(100, 100, 80, -Math.PI/2, (2 * Math.PI * percent) - Math.PI/2);
+      gctx.stroke();
 
-    // Progress arc
-    gctx.strokeStyle = "#4CAF50";
-    gctx.beginPath();
-    gctx.arc(100, 100, 80, -Math.PI/2, (2 * Math.PI * percent) - Math.PI/2);
-    gctx.stroke();
-
-    // Text percentage (adapt to dark mode)
-    gctx.fillStyle = isDarkMode ? "#ffffff" : "#333";
-    gctx.font = "20px Roboto";
-    gctx.textAlign = "center";
-    gctx.fillText(`${Math.round(percent * 100)}%`, 100, 110);
-  }
-
-  // Motivational Message
-  if (motivationMessage) {
-    if (percent === 1) {
-      motivationMessage.textContent = "🎉 Fantastic! All tasks completed!";
-    } else if (percent >= 0.5) {
-      motivationMessage.textContent = "👍 Great job! Keep pushing!";
-    } else {
-      motivationMessage.textContent = "💡 Stay focused, you can do it!";
+      // Percentage text
+      gctx.fillStyle = textColor;
+      gctx.font = "20px Roboto";
+      gctx.textAlign = "center";
+      gctx.fillText(`${Math.round(percent * 100)}%`, 100, 110);
     }
-    motivationMessage.style.color = isDarkMode ? "#ffffff" : "#004080";
+
+    // ==============================
+    // Motivational Message
+    // ==============================
+    if (motivationMessage) {
+      if (percent === 1) {
+        motivationMessage.textContent = "🎉 Fantastic! All tasks completed!";
+      } else if (percent >= 0.5) {
+        motivationMessage.textContent = "👍 Great job! Keep pushing!";
+      } else {
+        motivationMessage.textContent = "💡 Stay focused, you can do it!";
+      }
+      motivationMessage.style.color = textColor;
+    }
   }
 }
+
+// Run once on page load
+drawProgressPage();
+
 
 
 
