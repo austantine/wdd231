@@ -69,75 +69,83 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==============================
-  // Tasks Page Logic
-  // ==============================
-  const taskForm = document.getElementById('taskForm');
-  if (taskForm) {
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+// Tasks Page Logic
+// ==============================
+const taskForm = document.getElementById('taskForm');
+if (taskForm) {
+  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-    async function loadInitialTasks() {
-      try {
-        const response = await fetch("data/items.json");
-        if (!response.ok) throw new Error("Network error");
-        const jsonTasks = await response.json();
-        if (tasks.length === 0) {
-          tasks = jsonTasks;
-          localStorage.setItem("tasks", JSON.stringify(tasks));
-        }
-        renderTasks();
-      } catch (err) {
-        console.error("Error fetching tasks:", err);
+  async function loadInitialTasks() {
+    try {
+      const response = await fetch("data/items.json");
+      if (!response.ok) throw new Error("Network error");
+      const jsonTasks = await response.json();
+      if (tasks.length === 0) {
+        tasks = jsonTasks;
+        localStorage.setItem("tasks", JSON.stringify(tasks));
       }
+      renderTasks();
+    } catch (err) {
+      console.error("Error fetching tasks:", err);
     }
+  }
 
-    function renderTasks() {
-      const taskList = document.getElementById('taskList');
-      taskList.innerHTML = '';
-      tasks.forEach((task, index) => {
-        const div = document.createElement('div');
-        div.className = 'task-item';
-        if (task.status === 'completed') {
-          div.classList.add('completed');
-        }
-        div.innerHTML = `
-          <span><strong>${task.title}</strong> - ${task.deadline} (${task.category}) [${task.status}]</span>
-          <button class="complete-btn" data-index="${index}">Mark Completed</button>
-          <button class="delete-btn" data-index="${index}">Delete</button>
-        `;
-        taskList.appendChild(div);
-      });
-    }
+  function renderTasks() {
+    const taskList = document.getElementById('taskList');
+    taskList.innerHTML = '';
+    tasks.forEach((task, index) => {
+      const div = document.createElement('div');
+      div.className = 'task-item';
+      if (task.status === 'completed') {
+        div.classList.add('completed');
+      }
+      div.innerHTML = `
+        <span><strong>${task.title}</strong> - ${task.deadline} (${task.category}) [${task.status}]</span>
+        ${task.status === 'completed' 
+          ? `<button class="uncomplete-btn" data-index="${index}">Mark Uncompleted</button>` 
+          : `<button class="complete-btn" data-index="${index}">Mark Completed</button>`}
+        <button class="delete-btn" data-index="${index}">Delete</button>
+      `;
+      taskList.appendChild(div);
+    });
+  }
 
-    taskForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const title = document.getElementById('taskTitle').value.trim();
-      const deadline = document.getElementById('taskDeadline').value;
-      const category = document.getElementById('taskCategory').value;
+  taskForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = document.getElementById('taskTitle').value.trim();
+    const deadline = document.getElementById('taskDeadline').value;
+    const category = document.getElementById('taskCategory').value;
 
-      if (!title || !deadline) return;
+    if (!title || !deadline) return;
 
-      tasks.push({ title, deadline, category, status: 'pending' });
+    tasks.push({ title, deadline, category, status: 'pending' });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    renderTasks();
+    e.target.reset();
+  });
+
+  document.getElementById('taskList').addEventListener('click', (e) => {
+    const index = e.target.getAttribute('data-index');
+    if (e.target.classList.contains('delete-btn')) {
+      tasks.splice(index, 1);
       localStorage.setItem('tasks', JSON.stringify(tasks));
       renderTasks();
-      e.target.reset();
-    });
+    }
+    if (e.target.classList.contains('complete-btn')) {
+      tasks[index].status = 'completed';
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      renderTasks();
+    }
+    if (e.target.classList.contains('uncomplete-btn')) {
+      tasks[index].status = 'pending';
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      renderTasks();
+    }
+  });
 
-    document.getElementById('taskList').addEventListener('click', (e) => {
-      const index = e.target.getAttribute('data-index');
-      if (e.target.classList.contains('delete-btn')) {
-        tasks.splice(index, 1);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        renderTasks();
-      }
-      if (e.target.classList.contains('complete-btn')) {
-        tasks[index].status = 'completed';
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        renderTasks();
-      }
-    });
+  loadInitialTasks();
+}
 
-    loadInitialTasks();
-  }
 
   // ==============================
   // Progress Page Logic

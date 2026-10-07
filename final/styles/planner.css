@@ -11,8 +11,10 @@
         --success-color: #2e7d32;
         --success-btn-color: #1b5e20;
         --task-completed-color: #e6ffe6;
+        --task-uncompleted-color: #ff9800;
         --danger-color: #f44336;
         --task-bg-color: #d32f2f;
+        --task-uncompleted-hover: #e68900;
         --background-color: #f9f9f9;
         --text-color: #333333;
         --button-color:#0077cc;
@@ -303,6 +305,20 @@ footer .info a:hover {
     text-decoration: line-through;   /* strike-through text */
     color: var(--hover-color);                  /* darker green text */
   }
+
+  .task-item .uncomplete-btn {
+    background: var(--task-uncompleted-color); /* orange */
+    color: var(--link-color);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .task-item .uncomplete-btn:hover {
+    background: var(--task-uncompleted-hover); /* darker orange on hover */
+  }
+  
   
   /* Keyframes for fade + slide animation */
   @keyframes fadeSlideIn {
