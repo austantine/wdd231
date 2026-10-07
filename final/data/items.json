@@ -1,0 +1,93 @@
+[
+    {
+      "title": "Read Chapter 3 - Economics",
+      "deadline": "2026-10-10",
+      "category": "reading",
+      "status": "pending"
+    },
+    {
+      "title": "Math Assignment - Algebra",
+      "deadline": "2026-10-12",
+      "category": "assignment",
+      "status": "pending"
+    },
+    {
+      "title": "Prepare for Chemistry Quiz",
+      "deadline": "2026-10-14",
+      "category": "exam-prep",
+      "status": "completed"
+    },
+    {
+      "title": "History Essay Draft",
+      "deadline": "2026-10-15",
+      "category": "assignment",
+      "status": "pending"
+    },
+    {
+      "title": "Review Physics Notes",
+      "deadline": "2026-10-16",
+      "category": "reading",
+      "status": "pending"
+    },
+    {
+      "title": "Group Project Meeting",
+      "deadline": "2026-10-17",
+      "category": "assignment",
+      "status": "completed"
+    },
+    {
+      "title": "Practice French Vocabulary",
+      "deadline": "2026-10-18",
+      "category": "reading",
+      "status": "pending"
+    },
+    {
+      "title": "Computer Science Lab Report",
+      "deadline": "2026-10-19",
+      "category": "assignment",
+      "status": "pending"
+    },
+    {
+      "title": "Revise Biology Diagrams",
+      "deadline": "2026-10-20",
+      "category": "reading",
+      "status": "completed"
+    },
+    {
+      "title": "Mock Exam - Literature",
+      "deadline": "2026-10-21",
+      "category": "exam-prep",
+      "status": "pending"
+    },
+    {
+      "title": "Statistics Homework",
+      "deadline": "2026-10-22",
+      "category": "assignment",
+      "status": "pending"
+    },
+    {
+      "title": "Prepare Presentation - Geography",
+      "deadline": "2026-10-23",
+      "category": "assignment",
+      "status": "completed"
+    },
+    {
+      "title": "Review Programming Concepts",
+      "deadline": "2026-10-24",
+      "category": "reading",
+      "status": "pending"
+    },
+    {
+      "title": "Exam Prep - Calculus",
+      "deadline": "2026-10-25",
+      "category": "exam-prep",
+      "status": "pending"
+    },
+    {
+      "title": "Finalize Research Paper",
+      "deadline": "2026-10-26",
+      "category": "assignment",
+      "status": "completed"
+    }
+  ]
+  

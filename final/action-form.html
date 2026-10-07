@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Personal site for Study Planner Project">
+    <meta name="author" content="Augustine O. Airhiavbere">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <title>Form Submission Results Page</title>
+
+    <!-- Facebook Open Graph Meta -->
+    <meta property="og:title" content="Student Personal site for Study Planner Project">
+    <meta property="og:description" content="Student Personal site That help that server as Study Planner Project">
+    <meta property="og:image" content="https://austantine.github.io/wdd231/final/images/social-preview.webp">
+    <meta property="og:url" content="https://austantine.github.io/wdd231/final/index.html">
+
+    <!-- Twitter Card Meta (extra SEO boost) -->
+    <meta name="twitter:card" content="Student Personal site for Study Planner Project">
+    <meta name="twitter:title" content="Student Personal site for Study Planner Project">
+    <meta name="twitter:description" content="Student Personal site That help that server as Study Planner Project">
+    <meta name="twitter:image" content="https://austantine.github.io/wdd231/final/images/social-preview.webp">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="styles/planner.css">
+    <link rel="stylesheet" href="styles/planner-responsive.css">
+    <!-- JavaScript -->
+    <script src="scripts/planner.js" defer></script>
+
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">Study Planner</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tasks.html">Planner</a></li>
+        <li><a href="progress.html">Progress</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="results-card">
+      <!-- Success Banner -->
+      <div class="success-banner" id="successBanner" role="alert" aria-live="assertive">
+        <span class="success-icon">✔</span>
+        Your task was submitted successfully!
+        <button class="dismiss-btn" id="dismissBanner" aria-label="Dismiss success message">&times;</button>
+      </div>
+
+      <h1>Form Submission Results</h1>
+      <p class="subtitle">Here are the details you submitted:</p>
+      <div id="formData"></div>
+      <a href="tasks.html" class="btn-back">⬅ Back to Planner</a>
+    </section>
+  </main>
+  <footer>
+    <p class="info">Contact: <a href="austantine@gmail.com">austantine@gmail.com</a> | Phone: (+234) 703-462-7247</p>
+    <p>🌴 Augustine O. Airhiavbere 🌴 | WDD 231 Final Project</p>
+    <p>&copy; <span id="year"></span> 👨‍💻 My Student Study planner🧑‍💼</p>
+    <p>Last Modified: <span id="lastModified"></span></p>
+    <button id="dark-mode-toggle">🌙 Dark Mode</button>
+</footer>
+</body>
+</html>

@@ -1,0 +1,70 @@
+/* Mobile styles with sliding + fade */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    background: var(--primary-color);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 220px;
+    border-radius: 0 0 8px 8px;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: max-height 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
+  }
+
+  nav ul.show {
+    max-height: 400px;
+    padding: 1rem;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  nav ul li {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  nav ul.show li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered fade-in */
+  nav ul.show li:nth-child(1) { transition-delay: 0.1s; }
+  nav ul.show li:nth-child(2) { transition-delay: 0.2s; }
+  nav ul.show li:nth-child(3) { transition-delay: 0.3s; }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* Animate hamburger into "X" */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  /* Quick Links stack vertically on mobile */
+  .quick-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--primary-color);
+  color: #fff;
+  margin-top: 2rem;
+}

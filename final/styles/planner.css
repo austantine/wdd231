@@ -1,0 +1,423 @@
+/* ==============================
+   Global Variables
+   ============================== */
+
+   @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Montserrat:wght@600&display=swap');
+
+   :root {
+        --primary-color: #004080;
+        --accent-color: #4CAF50;
+        --hover-color: #388e3c;
+        --success-color: #2e7d32;
+        --success-btn-color: #1b5e20;
+        --task-completed-color: #e6ffe6;
+        --danger-color: #f44336;
+        --task-bg-color: #d32f2f;
+        --background-color: #f9f9f9;
+        --text-color: #333333;
+        --button-color:#0077cc;
+        --link-color: #ffffff;
+        --border-color: #cccccc;
+        --hero-bg:  #e6f0ff;
+        --color-overlay-dark: rgba(0, 0, 0, 0.1);
+        --shadow-box-color: rgba(0,64,128,0.1);
+        --shadow-box-hover: rgba(46, 125, 50, 0.4);
+        --color-overlay-grey: rgba(255,255,255,0.2);
+  
+    /* Dark mode equivalents */
+    --dark-bg: #111111;
+    --dark-card-bg: #333333;
+    --dark-text: #eeeeee;
+    --dark-link: #4da6ff;
+    --dark-border: #555555;
+  }
+  
+  
+  /* ==============================
+     Reset / Normalize Basics
+     ============================== */
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+  
+ 
+  body {
+    background: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  
+
+  /* ==============================
+    Header & Navigation
+   ============================== */
+header {
+    background: var(--primary-color);
+    color: var(--link-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+  
+  header .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  nav {
+    position: relative;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    background: var(--color-overlay-grey);
+  }
+  
+  nav ul li a.active {
+    border-bottom: 2px solid var(--accent-color);
+  }
+  
+  /*=================================
+   Hamburger button 
+   ==================================*/
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .hamburger span {
+    height: 3px;
+    width: 25px;
+    background: var(--link-color);
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  
+/* =============================
+    Hero Section 
+  ==============================*/
+.hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--hero-bg);
+  }
+  
+  .cta-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--accent-color);
+    color: var(--link-color);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background: var(--hover-color);
+  }
+  
+  /* Content Sections */
+  section {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: var(--link-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-box-color);
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+  }
+  
+  /* Quick Links Grid */
+  .quick-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .link-card {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px var(--shadow-box-color);
+  }
+  
+  .link-card h3 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .link-card .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--accent-color);
+    color: var(--link-color);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .link-card .btn:hover {
+    background: var(--hover-color);
+  }
+  
+  /* Task Manager */
+  form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  
+  form input, form select, form button {
+    padding: 0.6rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    flex: 1;
+  }
+  
+  form button {
+    background: var(--accent-color);
+    color: var(--link-color);
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background: var(--hover-color);
+  }
+  
+  .task-item {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .task-item button {
+    background: var(--danger-color);
+    color: var(--link-color);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .task-item button:hover {
+    background: var(--task-bg-color);
+  }
+  
+  /* Progress Tracker */
+  #progressSummary {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+  }
+  
+  canvas {
+    max-width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+  }
+
+
+/* ==============================
+   Footer
+   ============================== */
+   footer {
+    background-color: var(--primary-color);
+    color: var(--link-color);
+    text-align: center;
+    padding: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer .info {
+    color: var(--link-color);
+}
+
+footer .info a {
+    color: var(--link-color);   /* force link text to white */
+    text-decoration: none;      /* optional: remove underline */
+}
+
+
+footer .info a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color); /* underline color */
+    text-decoration-thickness: 2px;             /* optional: make it bolder */
+}
+
+#year {
+    padding-top: 1.5rem;
+}
+
+#lastModified {
+    padding-bottom: 0.5rem;
+}
+
+/* Completed tasks styling with animation */
+.task-item.completed {
+    background-color: var(--task-completed-color);   /* light green background */
+    border-left: 4px solid var(--accent-color);
+    transition: background-color 0.6s ease, transform 0.6s ease;
+    animation: fadeSlideIn 0.6s ease forwards;
+  }
+  
+  .task-item.completed span {
+    text-decoration: line-through;   /* strike-through text */
+    color: var(--hover-color);                  /* darker green text */
+  }
+  
+  /* Keyframes for fade + slide animation */
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Success banner */
+.success-banner {
+    position: relative;
+    background-color: var(--task-completed-color);
+    color: var(--success-color);
+    font-weight: bold;
+    padding: 1rem 2.5rem 1rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    opacity: 0;
+    animation: fadeInBanner 1s ease forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  /* Success icon with pulse animation */
+  .success-icon {
+    font-size: 1.5rem;
+    color: var(--success-color);
+    animation: pulseIcon 1.2s ease infinite;
+  }
+  
+  @keyframes pulseIcon {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  /* Hover effect */
+  .success-banner:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px var(--shadow-box-hover);
+  }
+  
+  /* Dismiss button */
+  .success-banner .dismiss-btn {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--success-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .success-banner .dismiss-btn:hover {
+    color: var(--success-btn-color);
+  }
+  
+  /* Fade-in keyframes */
+  @keyframes fadeInBanner {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Slide-up fade-out animation */
+  @keyframes slideUpFadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
+  }
+  
+  .success-banner.dismissed {
+    animation: slideUpFadeOut 0.6s ease forwards;
+  }
+  
+  /* ==============================
+   Dark Mode
+   ============================== */
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  
+  body.dark-mode header,
+  body.dark-mode footer {
+    background-color: var(--primary-color); /* keep brand color */
+    color: var(--link-color);
+  }
+  
+  body.dark-mode section,
+  body.dark-mode .card,
+  body.dark-mode .results-card,
+  body.dark-mode .progress-tracker,
+  body.dark-mode .task-manager,
+  body.dark-mode .link-card {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+    border-color: var(--dark-border);
+  }
+  
+  body.dark-mode h1,
+  body.dark-mode h2,
+  body.dark-mode h3 {
+    color: var(--dark-text);
+  }
+  
+  body.dark-mode a {
+    color: var(--dark-link);
+  }
+  
