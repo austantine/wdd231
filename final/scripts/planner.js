@@ -237,7 +237,7 @@ if (formDataDiv) {
     }, { once: true });
   });
 
-  // Auto-dismiss after 5 seconds
+  // Auto-dismiss after 15 seconds
   setTimeout(() => {
     if (successBanner && successBanner.style.display !== "none") {
       successBanner.classList.add("dismissed");
@@ -245,7 +245,7 @@ if (formDataDiv) {
         successBanner.style.display = "none";
       }, { once: true });
     }
-  }, 5000);
+  }, 15000);
 
   // Back to Planner button clears banner state
   backBtn?.addEventListener("click", () => {
