@@ -401,6 +401,7 @@ body.dark-mode {
   }
   
   body.dark-mode section,
+  body.dark-mode .hero,
   body.dark-mode .card,
   body.dark-mode .results-card,
   body.dark-mode .progress-tracker,
