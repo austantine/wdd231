@@ -162,13 +162,72 @@ if (taskForm) {
 // ==============================
 // Progress Page Logic
 // ==============================
-function drawProgressPage() {
-  const progressSummary = document.getElementById('progressSummary');
-  const progressChart = document.getElementById('progressChart');
-  const categoryProgress = document.getElementById("categoryProgress");
-  const completionGauge = document.getElementById("completionGauge");
-  const motivationMessage = document.getElementById("motivationMessage");
+const progressSummary = document.getElementById('progressSummary');
+const progressChart = document.getElementById('progressChart');
+const categoryProgress = document.getElementById("categoryProgress");
+const completionGauge = document.getElementById("completionGauge");
+const motivationMessage = document.getElementById("motivationMessage");
+const streakSection = document.getElementById("currentStreak");
+const longestSection = document.getElementById("longestStreak");
+const resetSuccessBanner = document.getElementById("resetSuccessBanner");
+const dismissResetBanner = document.getElementById("dismissResetBanner");
 
+// Reset Streak Button Logic
+const resetStreakBtn = document.getElementById("resetStreakBtn");
+if (resetStreakBtn) {
+  resetStreakBtn.addEventListener("click", () => {
+    localStorage.removeItem("lastCompletionDate");
+    localStorage.setItem("currentStreak", 0);
+    localStorage.setItem("longestStreak", 0);
+
+    // Update display immediately
+    if (streakSection && longestSection) {
+      streakSection.textContent = "🔥 Current Streak: 0 day(s)";
+      longestSection.textContent = "🏆 Longest Streak: 0 day(s)";
+    }
+  });
+}
+
+// Show banner after reset
+function showResetSuccessBanner() {
+  if (resetSuccessBanner) {
+    resetSuccessBanner.style.display = "flex";
+    resetSuccessBanner.classList.add("show");
+
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => {
+      resetSuccessBanner.classList.add("dismissed");
+      resetSuccessBanner.style.display = "none";
+    }, 5000);
+  }
+}
+
+// Dismiss manually
+if (dismissResetBanner) {
+  dismissResetBanner.addEventListener("click", () => {
+    resetSuccessBanner.classList.add("dismissed");
+    resetSuccessBanner.style.display = "none";
+  });
+}
+
+// Update confirm reset logic to show banner
+if (confirmResetBtn) {
+  confirmResetBtn.addEventListener("click", () => {
+    localStorage.removeItem("lastCompletionDate");
+    localStorage.setItem("currentStreak", 0);
+    localStorage.setItem("longestStreak", 0);
+
+    if (streakSection && longestSection) {
+      streakSection.textContent = "🔥 Current Streak: 0 day(s)";
+      longestSection.textContent = "🏆 Longest Streak: 0 day(s)";
+    }
+
+    resetModal.style.display = "none"; // close modal
+    showResetSuccessBanner(); // show success banner
+  });
+}
+
+function drawProgressPage() {
   if (progressSummary && progressChart) {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const completed = tasks.filter(t => t.status === 'completed').length;
@@ -178,38 +237,24 @@ function drawProgressPage() {
 
     const isDarkMode = document.body.classList.contains("dark-mode");
 
-    // Helper to pull CSS variables
-    function getCSSVar(name) {
-      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-    }
-
-    const accentColor = getCSSVar("--accent-color");
-    const dangerColor = getCSSVar("--danger-color");
-    const textColor = isDarkMode ? getCSSVar("--dark-text") : getCSSVar("--text-color");
-    const primaryColor = getCSSVar("--primary-color");
-
-    // ==============================
-    // Summary Text
-    // ==============================
+    // Summary text
     progressSummary.textContent = `Completed: ${completed} | Pending: ${pending}`;
-    progressSummary.style.color = textColor;
+    progressSummary.style.color = isDarkMode ? "#ffffff" : "#004080";
 
-    // ==============================
-    // Bar Chart
-    // ==============================
+    // Bar chart
     const ctx = progressChart.getContext('2d');
     ctx.clearRect(0, 0, progressChart.width, progressChart.height);
 
     const completedWidth = (completed / total) * 200;
     const pendingWidth = (pending / total) * 200;
 
-    ctx.fillStyle = accentColor;
+    ctx.fillStyle = '#4CAF50';
     ctx.fillRect(50, 50, completedWidth, 30);
 
-    ctx.fillStyle = dangerColor;
+    ctx.fillStyle = '#f44336';
     ctx.fillRect(50 + completedWidth, 50, pendingWidth, 30);
 
-    ctx.strokeStyle = primaryColor;
+    ctx.strokeStyle = '#004080';
     ctx.strokeRect(50, 50, 200, 30);
 
     // Tooltip
@@ -221,7 +266,7 @@ function drawProgressPage() {
       ctx.clearRect(0, 90, progressChart.width, 40);
 
       if (y >= 50 && y <= 80 && x >= 50 && x <= 250) {
-        ctx.fillStyle = textColor;
+        ctx.fillStyle = isDarkMode ? "#ffffff" : "#333333";
         ctx.font = '14px Roboto';
         ctx.textAlign = 'center';
         ctx.fillText(
@@ -231,9 +276,7 @@ function drawProgressPage() {
       }
     };
 
-    // ==============================
     // Category Breakdown
-    // ==============================
     if (categoryProgress) {
       const categories = ["reading", "assignment", "exam-prep"];
       categoryProgress.innerHTML = categories.map(cat => {
@@ -243,36 +286,29 @@ function drawProgressPage() {
       }).join("");
     }
 
-    // ==============================
     // Circular Gauge
-    // ==============================
     if (completionGauge) {
       const gctx = completionGauge.getContext("2d");
       gctx.clearRect(0, 0, completionGauge.width, completionGauge.height);
 
-      // Background circle
       gctx.strokeStyle = "#ddd";
       gctx.lineWidth = 15;
       gctx.beginPath();
       gctx.arc(100, 100, 80, 0, 2 * Math.PI);
       gctx.stroke();
 
-      // Progress arc
-      gctx.strokeStyle = accentColor;
+      gctx.strokeStyle = "#4CAF50";
       gctx.beginPath();
       gctx.arc(100, 100, 80, -Math.PI/2, (2 * Math.PI * percent) - Math.PI/2);
       gctx.stroke();
 
-      // Percentage text
-      gctx.fillStyle = textColor;
+      gctx.fillStyle = isDarkMode ? "#ffffff" : "#333";
       gctx.font = "20px Roboto";
       gctx.textAlign = "center";
       gctx.fillText(`${Math.round(percent * 100)}%`, 100, 110);
     }
 
-    // ==============================
     // Motivational Message
-    // ==============================
     if (motivationMessage) {
       if (percent === 1) {
         motivationMessage.textContent = "🎉 Fantastic! All tasks completed!";
@@ -281,13 +317,23 @@ function drawProgressPage() {
       } else {
         motivationMessage.textContent = "💡 Stay focused, you can do it!";
       }
-      motivationMessage.style.color = textColor;
+      motivationMessage.style.color = isDarkMode ? "#ffffff" : "#004080";
+    }
+
+    // Streak Tracker Display
+    if (streakSection && longestSection) {
+      const currentStreak = localStorage.getItem("currentStreak") || 0;
+      const longestStreak = localStorage.getItem("longestStreak") || 0;
+
+      streakSection.textContent = `🔥 Current Streak: ${currentStreak} day(s)`;
+      longestSection.textContent = `🏆 Longest Streak: ${longestStreak} day(s)`;
     }
   }
 }
 
 // Run once on page load
 drawProgressPage();
+
 
 
 

@@ -77,6 +77,35 @@
       <!-- Motivational Message -->
       <p id="motivationMessage" class="motivation"></p>
     </section>
+
+    <!-- Streak Tracker Section -->
+<section class="streak-tracker">
+  <h2>Study Streak</h2>
+  <p id="currentStreak">🔥 Current Streak: 0 day(s)</p>
+  <p id="longestStreak">🏆 Longest Streak: 0 day(s)</p>
+  <button id="resetStreakBtn">Reset Streak</button>
+</section>
+
+<!-- Success Banner for Reset -->
+<div id="resetSuccessBanner" class="success-banner">
+  <span class="success-icon">✅</span>
+  <span>Streak reset successfully!</span>
+  <button class="dismiss-btn" id="dismissResetBanner">&times;</button>
+</div>
+
+
+<!-- Reset Confirmation Modal (placed outside streak-tracker) -->
+<div id="resetModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeResetModal">&times;</span>
+    <h3>Confirm Reset</h3>
+    <p>Are you sure you want to reset your streak?</p>
+    <button id="confirmResetBtn">Yes, Reset</button>
+    <button id="cancelResetBtn">Cancel</button>
+  </div>
+</div>
+
+
   </main>
 
   <!-- Footer -->
