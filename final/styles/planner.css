@@ -632,6 +632,11 @@ body.dark-mode .progress-legend span{
   color: var(--dark-text);
 }
 
+/* Dark mode for progress summary */
+body.dark-mode #progressSummary {
+  color: var(--link-color); /* pure white for clarity */
+}
+
 body.dark-mode a {
     color: var(--dark-link);
   }

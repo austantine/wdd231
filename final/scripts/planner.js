@@ -155,8 +155,7 @@ if (taskForm) {
   loadInitialTasks();
 }
 
-
-  // ==============================
+// ==============================
 //    Progress Page
 // ==============================
 const progressSummary = document.getElementById('progressSummary');
@@ -172,8 +171,12 @@ if (progressSummary && progressChart) {
   const total = completed + pending || 1;
   const percent = completed / total;
 
+  // Detect dark mode
+  const isDarkMode = document.body.classList.contains("dark-mode");
+
   // Summary text
   progressSummary.textContent = `Completed: ${completed} | Pending: ${pending}`;
+  progressSummary.style.color = isDarkMode ? "#ffffff" : "#004080";
 
   // Draw bar chart
   const ctx = progressChart.getContext('2d');
@@ -204,7 +207,7 @@ if (progressSummary && progressChart) {
     ctx.clearRect(0, 90, progressChart.width, 40);
 
     if (y >= 50 && y <= 80 && x >= 50 && x <= 250) {
-      ctx.fillStyle = '#333';
+      ctx.fillStyle = isDarkMode ? "#ffffff" : "#333333";
       ctx.font = '14px Roboto';
       ctx.textAlign = 'center';
 
@@ -244,7 +247,7 @@ if (progressSummary && progressChart) {
     gctx.stroke();
 
     // Text percentage
-    gctx.fillStyle = "#333";
+    gctx.fillStyle = isDarkMode ? "#ffffff" : "#333";
     gctx.font = "20px Roboto";
     gctx.textAlign = "center";
     gctx.fillText(`${Math.round(percent * 100)}%`, 100, 110);
@@ -259,8 +262,10 @@ if (progressSummary && progressChart) {
     } else {
       motivationMessage.textContent = "💡 Stay focused, you can do it!";
     }
+    motivationMessage.style.color = isDarkMode ? "#ffffff" : "#004080";
   }
 }
+
 
   // ==============================
   // Modal Dialog Example
