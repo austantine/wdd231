@@ -246,8 +246,8 @@ if (progressSummary && progressChart) {
     gctx.arc(100, 100, 80, -Math.PI/2, (2 * Math.PI * percent) - Math.PI/2);
     gctx.stroke();
 
-    // Text percentage
-    gctx.fillStyle = isDarkMode ? "#ffffff" : "#333333";
+    // Text percentage (adapt to dark mode)
+    gctx.fillStyle = isDarkMode ? "#ffffff" : "#333";
     gctx.font = "20px Roboto";
     gctx.textAlign = "center";
     gctx.fillText(`${Math.round(percent * 100)}%`, 100, 110);
@@ -265,7 +265,6 @@ if (progressSummary && progressChart) {
     motivationMessage.style.color = isDarkMode ? "#ffffff" : "#004080";
   }
 }
-
 
   // ==============================
   // Modal Dialog Example
