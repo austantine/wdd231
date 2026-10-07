@@ -163,6 +163,7 @@ const progressChart = document.getElementById('progressChart');
 const categoryProgress = document.getElementById("categoryProgress");
 const completionGauge = document.getElementById("completionGauge");
 const motivationMessage = document.getElementById("motivationMessage");
+const darkModeToggle = document.getElementById("dark-mode-toggle");
 
 // Function to draw progress page elements
 function drawProgressPage() {
@@ -200,7 +201,7 @@ function drawProgressPage() {
     ctx.strokeRect(50, 50, 200, 30);
 
     // Tooltip logic
-    progressChart.addEventListener('mousemove', (e) => {
+    progressChart.onmousemove = (e) => {
       const rect = progressChart.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -219,7 +220,7 @@ function drawProgressPage() {
           ctx.fillText(`Pending: ${pending}`, 150, 110);
         }
       }
-    });
+    };
 
     // Category Breakdown
     if (categoryProgress) {
@@ -274,13 +275,13 @@ function drawProgressPage() {
 drawProgressPage();
 
 // Re-run when dark mode is toggled
-const darkModeToggle = document.getElementById("dark-mode-toggle");
 if (darkModeToggle) {
   darkModeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     drawProgressPage(); // redraw immediately
   });
 }
+
 
 
   // ==============================
