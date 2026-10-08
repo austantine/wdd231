@@ -532,8 +532,8 @@ body.dark-mode .about-highlight {
 }
 /* Dark mode variable overrides */
 body.dark-mode .modal-content {
-    background: var(--color-overlay-dark);     /* dark background */
-    color: var(--dark-text);                   /* light text */
+    background: var(--dark-bg);     /* dark background */
+    color: var(--link-color);                   /* light text */
 }
 
 
