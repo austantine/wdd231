@@ -148,6 +148,9 @@ if (taskForm) {
       tasks[index].status = 'completed';
       localStorage.setItem('tasks', JSON.stringify(tasks));
       renderTasks();
+
+      // ✅ Call streak update here from progress.js
+    updateStreak();
     }
     if (e.target.classList.contains('uncomplete-btn')) {
       tasks[index].status = 'pending';

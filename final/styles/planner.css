@@ -530,6 +530,11 @@ body.dark-mode .about-highlight {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* Dark mode variable overrides */
+body.dark-mode .modal-content {
+    background: var(--color-overlay-dark);     /* dark background */
+    color: var(--dark-text);                   /* light text */
+}
 
 
 /* ==============================
