@@ -304,8 +304,17 @@ body.dark-mode .about-highlight {
     padding: 0.8rem;
     border-bottom: 1px solid var(--border-color);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* text left, buttons right */
     align-items: center;
+  }
+  
+  .task-item span {
+    flex: 1; /* text takes available space */
+  }
+  
+  .task-item .button-group {
+    display: flex;
+    gap: 0.5rem; /* spacing between buttons */
   }
   
   .task-item button {
@@ -314,9 +323,9 @@ body.dark-mode .about-highlight {
     border: none;
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
-    align-items: end;
     cursor: pointer;
   }
+  
   
   .task-item button:hover {
     background: var(--task-bg-color);
