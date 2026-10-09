@@ -299,33 +299,33 @@ body.dark-mode .about-highlight {
   form button:hover {
     background: var(--hover-color);
   }
-  
+
   .task-item {
-    padding: 0.8rem;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between; /* text left, buttons right */
-    align-items: center;
-  }
-  
-  .task-item span {
-    flex: 1; /* text expands to fill space */
-  }
-  
-  .task-item .button-group {
-    display: flex;
-    gap: 0.5rem; /* spacing between buttons */
-  }
-  
-  .task-item button {
-    background: var(--danger-color);
-    color: var(--link-color);
-    border: none;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
+  padding: 0.8rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between; /* text left, buttons right */
+  align-items: center;
+}
+
+.task-item span {
+  flex: 1; /* text expands to fill space */
+}
+
+.task-item .button-group {
+  display: flex;
+  gap: 0.5rem; /* spacing between buttons */
+}
+
+.task-item button {
+  background: var(--danger-color);
+  color: var(--link-color);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
   
   .task-item button:hover {
     background: var(--task-bg-color);

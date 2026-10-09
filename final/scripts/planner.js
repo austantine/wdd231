@@ -117,6 +117,7 @@ if (taskForm) {
     });
   }
   
+  
 
   // Add new task locally and update localStorage
   taskForm.addEventListener('submit', (e) => {
