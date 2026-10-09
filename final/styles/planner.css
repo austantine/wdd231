@@ -314,6 +314,7 @@ body.dark-mode .about-highlight {
     border: none;
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
+    align-items: end;
     cursor: pointer;
   }
   
