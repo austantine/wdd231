@@ -104,19 +104,19 @@ if (taskForm) {
       if (task.status === 'completed') {
         div.classList.add('completed');
       }
-     div.innerHTML = `
-    <span><strong>${task.title}</strong> - ${task.deadline} (${task.category}) [${task.status}]</span>
-    <div class="button-group">
-    ${task.status === 'completed' 
-      ? `<button class="uncomplete-btn" data-index="${index}">Mark Uncompleted</button>` 
-      : `<button class="complete-btn" data-index="${index}">Mark Completed</button>`}
-    <button class="delete-btn" data-index="${index}">Delete</button>
-    </div>
-    `;
-
+      div.innerHTML = `
+        <span><strong>${task.title}</strong> - ${task.deadline} (${task.category}) [${task.status}]</span>
+        <div class="button-group">
+          ${task.status === 'completed' 
+            ? `<button class="uncomplete-btn" data-index="${index}">Mark Uncompleted</button>` 
+            : `<button class="complete-btn" data-index="${index}">Mark Completed</button>`}
+          <button class="delete-btn" data-index="${index}">Delete</button>
+        </div>
+      `;
       taskList.appendChild(div);
     });
   }
+  
 
   // Add new task locally and update localStorage
   taskForm.addEventListener('submit', (e) => {
